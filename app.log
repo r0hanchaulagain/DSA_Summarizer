@@ -1,0 +1,97 @@
+2025-07-06 08:09:15,643 - matplotlib.font_manager - INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+2025-07-06 08:09:16,600 - matplotlib.font_manager - INFO - generated new fontManager
+2025-07-06 08:10:03,139 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-06 08:11:15,802 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-06 08:11:15,821 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-06 08:11:15,976 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-06 08:11:15,992 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2025-07-06 08:11:15,993 - chatbot.vector_store - INFO - Created new collection: dsa_videos
+2025-07-06 08:18:28,195 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-06 08:18:28,195 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-06 08:18:30,908 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:18:56,970 - video_processor.downloader - ERROR - Error downloading video: Downloaded video file not found
+2025-07-06 08:18:56,971 - utils.helpers - ERROR - Error in video processing pipeline: Downloaded video file not found
+2025-07-06 08:18:56,972 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/thesis/src/video_processor/pipeline.py", line 50, in process_video
+    video_metadata = self.downloader.download_youtube_video(video_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/thesis/src/video_processor/downloader.py", line 62, in download_youtube_video
+    raise FileNotFoundError("Downloaded video file not found")
+FileNotFoundError: Downloaded video file not found
+
+2025-07-06 08:19:23,574 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-06 08:19:23,574 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-06 08:19:26,050 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:19:51,975 - video_processor.downloader - ERROR - Error downloading video: Downloaded video file not found
+2025-07-06 08:19:51,975 - utils.helpers - ERROR - Error in video processing pipeline: Downloaded video file not found
+2025-07-06 08:19:51,975 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/thesis/src/video_processor/pipeline.py", line 50, in process_video
+    video_metadata = self.downloader.download_youtube_video(video_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/thesis/src/video_processor/downloader.py", line 62, in download_youtube_video
+    raise FileNotFoundError("Downloaded video file not found")
+FileNotFoundError: Downloaded video file not found
+
+2025-07-06 08:30:50,834 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:32:09,209 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:33:32,877 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-06 08:33:33,789 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-06 08:33:33,805 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-06 08:33:33,903 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-06 08:33:33,904 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-06 08:37:29,007 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-06 08:37:29,008 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-06 08:37:40,622 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:37:50,760 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:37:50,760 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 08:37:50,760 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-06 08:37:50,760 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-06 08:37:53,119 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-06 08:37:53,120 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-06 08:37:53,120 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-06 08:37:53,195 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,249 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,290 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,334 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,380 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,420 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,457 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,501 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,542 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,592 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,627 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,666 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,705 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,742 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,787 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,832 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,870 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,911 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,954 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:53,996 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 08:37:54,001 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-06 08:37:54,001 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-06 08:37:54,001 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-06 08:37:54,002 - py.warnings - WARNING - /home/d1e/Work/thesis/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-06 08:52:43,784 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-06 08:52:43,784 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-06 08:52:43,785 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-06 08:52:43,785 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-06 08:52:43,791 - ai_engine.content_analyzer - ERROR - Error saving content analysis: name 'os' is not defined
+2025-07-06 08:52:43,791 - ai_engine.content_analyzer - ERROR - Error analyzing transcription: name 'os' is not defined
+2025-07-06 08:52:43,791 - utils.helpers - ERROR - Error in video processing pipeline: name 'os' is not defined
+2025-07-06 08:52:43,792 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/thesis/src/video_processor/pipeline.py", line 74, in process_video
+    content_analysis = self.analyzer.analyze_transcription(transcription_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/thesis/src/ai_engine/content_analyzer.py", line 115, in analyze_transcription
+    self._save_analysis(analysis_result)
+  File "/home/d1e/Work/thesis/src/ai_engine/content_analyzer.py", line 347, in _save_analysis
+    analysis_dir = os.path.join(config.SUMMARIES_DIR, "content_analysis")
+                   ^^
+NameError: name 'os' is not defined
+
+2025-07-06 08:52:43,792 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-06 08:52:43,804 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
