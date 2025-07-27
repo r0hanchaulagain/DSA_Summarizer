@@ -16,7 +16,7 @@ class QueryProcessor:
     
     def __init__(self):
         genai.configure(api_key=config.GEMINI_API_KEY)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
         self.vector_store = VideoVectorStore()
         
         # Query intent patterns

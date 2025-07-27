@@ -95,3 +95,861 @@ NameError: name 'os' is not defined
 
 2025-07-06 08:52:43,792 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
 2025-07-06 08:52:43,804 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-06 16:24:55,062 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-06 16:24:55,978 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-06 16:24:55,992 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-06 16:24:56,068 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-06 16:24:56,069 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-06 16:25:24,698 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-06 16:25:25,389 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-06 16:25:25,399 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-06 16:25:25,469 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-06 16:25:25,470 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-06 16:26:37,620 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-06 16:26:37,621 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-06 16:26:40,335 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 16:26:42,301 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 16:26:42,301 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 16:26:42,302 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-06 16:26:42,302 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-06 16:26:44,026 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-06 16:26:44,027 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-06 16:26:44,027 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-06 16:26:44,088 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,126 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,158 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,194 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,228 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,264 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,293 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,329 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,363 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,398 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,425 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,458 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,491 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,522 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,558 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,591 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,623 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,654 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,686 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,717 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:26:44,720 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-06 16:26:44,720 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-06 16:26:44,720 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-06 16:26:44,720 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-06 16:28:17,817 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-06 16:28:17,817 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-06 16:28:17,817 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-06 16:28:17,817 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-06 16:28:17,823 - ai_engine.content_analyzer - ERROR - Error saving content analysis: name 'os' is not defined
+2025-07-06 16:28:17,823 - ai_engine.content_analyzer - ERROR - Error analyzing transcription: name 'os' is not defined
+2025-07-06 16:28:17,823 - utils.helpers - ERROR - Error in video processing pipeline: name 'os' is not defined
+2025-07-06 16:28:17,824 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 74, in process_video
+    content_analysis = self.analyzer.analyze_transcription(transcription_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/content_analyzer.py", line 115, in analyze_transcription
+    self._save_analysis(analysis_result)
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/content_analyzer.py", line 347, in _save_analysis
+    analysis_dir = os.path.join(config.SUMMARIES_DIR, "content_analysis")
+                   ^^
+NameError: name 'os' is not defined
+
+2025-07-06 16:28:17,824 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-06 16:28:17,835 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-06 16:30:39,877 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-06 16:30:40,704 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-06 16:30:40,720 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-06 16:30:40,820 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-06 16:30:40,822 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-06 16:31:45,233 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-06 16:31:45,233 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-06 16:31:47,626 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 16:31:49,326 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 16:31:49,329 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-06 16:31:49,329 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-06 16:31:49,329 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-06 16:31:52,018 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-06 16:31:52,019 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-06 16:31:52,019 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-06 16:31:52,061 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,117 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,166 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,212 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,255 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,307 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,348 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,398 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,449 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,500 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,538 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,584 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,629 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,673 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,728 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,776 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,822 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,867 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,915 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,953 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-06 16:31:52,956 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-06 16:31:52,956 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-06 16:31:52,956 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-06 16:31:52,957 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-06 16:33:47,591 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-06 16:33:47,592 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-06 16:33:47,592 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-06 16:33:47,592 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-06 16:33:47,600 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-06 16:33:47,600 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-06 16:33:47,600 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-06 16:33:47,600 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-06 16:33:47,600 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-06 16:33:48,256 - ai_engine.summarizer - ERROR - Error generating executive summary: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-07-06 16:33:48,256 - ai_engine.summarizer - ERROR - Error summarizing section: 'content'
+2025-07-06 16:33:48,256 - ai_engine.summarizer - ERROR - Error generating detailed breakdown: 'content'
+2025-07-06 16:33:48,257 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-06 16:33:48,257 - ai_engine.summarizer - ERROR - Error generating markdown summary: 'content'
+2025-07-06 16:33:48,257 - ai_engine.summarizer - ERROR - Error generating comprehensive summary: 'content'
+2025-07-06 16:33:48,257 - utils.helpers - ERROR - Error in video processing pipeline: 'content'
+2025-07-06 16:33:48,258 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 82, in process_video
+    summary_result = self.summarizer.generate_comprehensive_summary(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 72, in generate_comprehensive_summary
+    markdown_file = self._generate_markdown_summary(summary_document, video_metadata['video_id'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 485, in _generate_markdown_summary
+    markdown_content = self._create_markdown_content(summary_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 561, in _create_markdown_content
+    f"- **{item['timestamp_formatted']}**: {item['content']} ({item['type']})"
+                                            ~~~~^^^^^^^^^^^
+KeyError: 'content'
+
+2025-07-06 16:33:48,259 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-06 16:33:48,285 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 11:30:51,936 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 11:30:52,938 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 11:30:52,954 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 11:30:53,037 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 11:30:53,038 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 11:32:26,944 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-07 11:32:26,945 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 11:32:30,169 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:32:32,264 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:32:32,265 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:32:32,266 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 11:32:32,266 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 11:32:34,903 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 11:32:34,903 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 11:32:34,903 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 11:32:34,977 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,034 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,084 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,141 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,198 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,254 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,300 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,355 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,417 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,491 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,537 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,593 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,645 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,692 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,750 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,810 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,861 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,910 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:35,962 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:36,016 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:32:36,021 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-07 11:32:36,021 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 11:32:36,021 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 11:32:36,022 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 11:34:03,910 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-07 11:34:03,910 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-07 11:34:03,910 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 11:34:03,910 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-07 11:34:03,917 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-07 11:34:03,917 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-07 11:34:03,917 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 11:34:03,917 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 11:34:03,917 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-07 11:34:10,830 - ai_engine.summarizer - ERROR - Error generating executive summary: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-07-07 11:34:10,830 - ai_engine.summarizer - ERROR - Error summarizing section: 'content'
+2025-07-07 11:34:10,830 - ai_engine.summarizer - ERROR - Error generating detailed breakdown: 'content'
+2025-07-07 11:34:10,831 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-07 11:34:10,831 - ai_engine.summarizer - ERROR - Error generating markdown summary: 'content'
+2025-07-07 11:34:10,831 - ai_engine.summarizer - ERROR - Error generating comprehensive summary: 'content'
+2025-07-07 11:34:10,831 - utils.helpers - ERROR - Error in video processing pipeline: 'content'
+2025-07-07 11:34:10,831 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 82, in process_video
+    summary_result = self.summarizer.generate_comprehensive_summary(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 72, in generate_comprehensive_summary
+    markdown_file = self._generate_markdown_summary(summary_document, video_metadata['video_id'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 485, in _generate_markdown_summary
+    markdown_content = self._create_markdown_content(summary_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 561, in _create_markdown_content
+    f"- **{item['timestamp_formatted']}**: {item['content']} ({item['type']})"
+                                            ~~~~^^^^^^^^^^^
+KeyError: 'content'
+
+2025-07-07 11:34:10,831 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-07 11:34:10,841 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 11:36:49,274 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-07 11:36:49,274 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 11:36:51,782 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:36:53,625 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:36:53,626 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:36:53,626 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 11:36:53,626 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 11:36:55,491 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 11:36:55,491 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 11:36:55,491 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 11:36:55,508 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,542 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,574 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,610 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,644 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,679 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,709 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,745 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,782 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,817 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,843 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,876 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,911 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,941 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:55,978 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:56,013 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:56,045 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:56,078 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:56,110 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:56,141 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:36:56,145 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-07 11:36:56,145 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 11:36:56,145 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 11:36:56,145 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 11:38:03,210 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-07 11:38:03,210 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-07 11:38:03,210 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 11:38:03,210 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-07 11:38:03,218 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-07 11:38:03,219 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-07 11:38:03,219 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 11:38:03,219 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 11:38:03,219 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-07 11:38:03,653 - ai_engine.summarizer - ERROR - Error generating executive summary: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-07-07 11:38:03,653 - ai_engine.summarizer - ERROR - Error summarizing section: 'content'
+2025-07-07 11:38:03,653 - ai_engine.summarizer - ERROR - Error generating detailed breakdown: 'content'
+2025-07-07 11:38:03,654 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-07 11:38:03,654 - ai_engine.summarizer - ERROR - Error generating markdown summary: 'content'
+2025-07-07 11:38:03,654 - ai_engine.summarizer - ERROR - Error generating comprehensive summary: 'content'
+2025-07-07 11:38:03,654 - utils.helpers - ERROR - Error in video processing pipeline: 'content'
+2025-07-07 11:38:03,654 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 82, in process_video
+    summary_result = self.summarizer.generate_comprehensive_summary(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 72, in generate_comprehensive_summary
+    markdown_file = self._generate_markdown_summary(summary_document, video_metadata['video_id'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 485, in _generate_markdown_summary
+    markdown_content = self._create_markdown_content(summary_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 561, in _create_markdown_content
+    f"- **{item['timestamp_formatted']}**: {item['content']} ({item['type']})"
+                                            ~~~~^^^^^^^^^^^
+KeyError: 'content'
+
+2025-07-07 11:38:03,654 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-07 11:38:03,673 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 11:44:45,346 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 11:44:46,177 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 11:44:46,195 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 11:44:46,286 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 11:44:46,287 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 11:46:01,568 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-07 11:46:01,568 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 11:46:11,788 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:46:15,510 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:46:15,511 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 11:46:15,511 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 11:46:15,511 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 11:46:18,278 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 11:46:18,278 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 11:46:18,278 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 11:46:18,325 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,380 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,434 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,498 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,557 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,617 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,667 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,736 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,791 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,850 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,893 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:18,946 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,001 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,051 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,112 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,168 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,220 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,275 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,328 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,376 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 11:46:19,380 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-07 11:46:19,380 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 11:46:19,380 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 11:46:19,381 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 11:47:58,428 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-07 11:47:58,429 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-07 11:47:58,429 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 11:47:58,429 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-07 11:47:58,436 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-07 11:47:58,437 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-07 11:47:58,437 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 11:47:58,437 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 11:47:58,437 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-07 11:48:05,308 - ai_engine.summarizer - ERROR - Error generating executive summary: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-07-07 11:48:05,308 - ai_engine.summarizer - ERROR - Error summarizing section: 'content'
+2025-07-07 11:48:05,308 - ai_engine.summarizer - ERROR - Error generating detailed breakdown: 'content'
+2025-07-07 11:48:05,309 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-07 11:48:05,309 - ai_engine.summarizer - ERROR - Error generating markdown summary: 'content'
+2025-07-07 11:48:05,309 - ai_engine.summarizer - ERROR - Error generating comprehensive summary: 'content'
+2025-07-07 11:48:05,309 - utils.helpers - ERROR - Error in video processing pipeline: 'content'
+2025-07-07 11:48:05,310 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 82, in process_video
+    summary_result = self.summarizer.generate_comprehensive_summary(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 72, in generate_comprehensive_summary
+    markdown_file = self._generate_markdown_summary(summary_document, video_metadata['video_id'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 485, in _generate_markdown_summary
+    markdown_content = self._create_markdown_content(summary_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 561, in _create_markdown_content
+    f"- **{item['timestamp_formatted']}**: {item['content']} ({item['type']})"
+                                            ~~~~^^^^^^^^^^^
+KeyError: 'content'
+
+2025-07-07 11:48:05,310 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-07 11:48:05,324 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:31:15,961 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 12:31:17,063 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 12:31:17,077 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 12:31:17,174 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 12:31:17,175 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 12:32:10,547 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-07 12:32:10,548 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 12:32:21,535 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:32:23,877 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:32:23,879 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:32:23,880 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 12:32:23,880 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 12:32:26,526 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 12:32:26,526 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 12:32:26,526 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 12:32:26,577 - video_processor.extractor - WARNING - OCR failed for frame at 0s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,637 - video_processor.extractor - WARNING - OCR failed for frame at 30s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,692 - video_processor.extractor - WARNING - OCR failed for frame at 60s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,742 - video_processor.extractor - WARNING - OCR failed for frame at 90s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,786 - video_processor.extractor - WARNING - OCR failed for frame at 120s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,837 - video_processor.extractor - WARNING - OCR failed for frame at 150s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,879 - video_processor.extractor - WARNING - OCR failed for frame at 180s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,926 - video_processor.extractor - WARNING - OCR failed for frame at 210s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:26,967 - video_processor.extractor - WARNING - OCR failed for frame at 240s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,012 - video_processor.extractor - WARNING - OCR failed for frame at 270s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,048 - video_processor.extractor - WARNING - OCR failed for frame at 300s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,090 - video_processor.extractor - WARNING - OCR failed for frame at 330s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,139 - video_processor.extractor - WARNING - OCR failed for frame at 360s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,192 - video_processor.extractor - WARNING - OCR failed for frame at 390s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,247 - video_processor.extractor - WARNING - OCR failed for frame at 420s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,299 - video_processor.extractor - WARNING - OCR failed for frame at 450s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,358 - video_processor.extractor - WARNING - OCR failed for frame at 480s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,428 - video_processor.extractor - WARNING - OCR failed for frame at 510s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,482 - video_processor.extractor - WARNING - OCR failed for frame at 540s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,544 - video_processor.extractor - WARNING - OCR failed for frame at 570s: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-07 12:32:27,548 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-07 12:32:27,548 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 12:32:27,548 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 12:32:27,549 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 12:34:36,827 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-07 12:34:36,827 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-07 12:34:36,828 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 12:34:36,828 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-07 12:34:36,835 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-07 12:34:36,836 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-07 12:34:36,836 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 12:34:36,836 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 12:34:36,836 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-07 12:34:37,642 - ai_engine.summarizer - ERROR - Error generating executive summary: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-07-07 12:34:37,642 - ai_engine.summarizer - ERROR - Error summarizing section: 'content'
+2025-07-07 12:34:37,642 - ai_engine.summarizer - ERROR - Error generating detailed breakdown: 'content'
+2025-07-07 12:34:37,643 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-07 12:34:37,643 - ai_engine.summarizer - ERROR - Error generating markdown summary: 'content'
+2025-07-07 12:34:37,643 - ai_engine.summarizer - ERROR - Error generating comprehensive summary: 'content'
+2025-07-07 12:34:37,644 - utils.helpers - ERROR - Error in video processing pipeline: 'content'
+2025-07-07 12:34:37,645 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 82, in process_video
+    summary_result = self.summarizer.generate_comprehensive_summary(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 72, in generate_comprehensive_summary
+    markdown_file = self._generate_markdown_summary(summary_document, video_metadata['video_id'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 485, in _generate_markdown_summary
+    markdown_content = self._create_markdown_content(summary_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 561, in _create_markdown_content
+    f"- **{item['timestamp_formatted']}**: {item['content']} ({item['type']})"
+                                            ~~~~^^^^^^^^^^^
+KeyError: 'content'
+
+2025-07-07 12:34:37,645 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:34:37,672 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:47:06,772 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-07 12:47:06,773 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 12:47:14,379 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:47:18,002 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:47:18,004 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:47:18,004 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 12:47:18,004 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 12:47:20,601 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 12:47:20,601 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 12:47:20,601 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 12:47:25,645 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-07 12:47:25,645 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 12:47:25,645 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 12:47:25,645 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 12:48:56,395 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-07 12:48:56,395 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-07 12:48:56,396 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 12:48:56,396 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-07 12:48:56,403 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-07 12:48:56,404 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-07 12:48:56,404 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 12:48:56,404 - ai_engine.content_analyzer - ERROR - Error analyzing frame content: name 'extract_dsa_topics' is not defined
+2025-07-07 12:48:56,404 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 12:48:56,404 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-07 12:48:57,080 - ai_engine.summarizer - ERROR - Error generating executive summary: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-07-07 12:48:57,080 - ai_engine.summarizer - ERROR - Error summarizing section: 'content'
+2025-07-07 12:48:57,081 - ai_engine.summarizer - ERROR - Error generating detailed breakdown: 'content'
+2025-07-07 12:48:57,081 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-07 12:48:57,082 - ai_engine.summarizer - ERROR - Error generating markdown summary: 'content'
+2025-07-07 12:48:57,082 - ai_engine.summarizer - ERROR - Error generating comprehensive summary: 'content'
+2025-07-07 12:48:57,082 - utils.helpers - ERROR - Error in video processing pipeline: 'content'
+2025-07-07 12:48:57,083 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 82, in process_video
+    summary_result = self.summarizer.generate_comprehensive_summary(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 72, in generate_comprehensive_summary
+    markdown_file = self._generate_markdown_summary(summary_document, video_metadata['video_id'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 485, in _generate_markdown_summary
+    markdown_content = self._create_markdown_content(summary_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/ai_engine/summarizer.py", line 561, in _create_markdown_content
+    item_type = item.get('type', 'topic')
+                                          
+KeyError: 'content'
+
+2025-07-07 12:48:57,083 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:48:57,108 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:49:57,022 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 12:49:57,863 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 12:49:57,876 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 12:49:57,967 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 12:49:57,968 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 12:51:37,770 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=cg6JGiXhQ9c
+2025-07-07 12:51:37,771 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 12:51:41,987 - video_processor.downloader - INFO - Downloading video: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:51:44,070 - video_processor.downloader - INFO - Successfully downloaded: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:51:44,073 - utils.helpers - INFO - Video metadata obtained for: Paid LinkedList Bootcamp - Launch Video
+2025-07-07 12:51:44,073 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 12:51:44,074 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 12:51:46,739 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 12:51:46,740 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 12:51:46,740 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/cg6JGiXhQ9c.mp4
+2025-07-07 12:51:52,186 - video_processor.extractor - INFO - Extracted 20 frames
+2025-07-07 12:51:52,186 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 12:51:52,186 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/cg6JGiXhQ9c_audio.wav
+2025-07-07 12:51:52,186 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 12:53:55,072 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/cg6JGiXhQ9c_transcription.json
+2025-07-07 12:53:55,073 - ai_engine.transcriber - INFO - Transcription completed for video: cg6JGiXhQ9c
+2025-07-07 12:53:55,074 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 12:53:55,074 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: cg6JGiXhQ9c
+2025-07-07 12:53:55,082 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/cg6JGiXhQ9c_analysis.json
+2025-07-07 12:53:55,082 - ai_engine.content_analyzer - INFO - Content analysis completed for video: cg6JGiXhQ9c
+2025-07-07 12:53:55,082 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 12:53:55,082 - ai_engine.content_analyzer - ERROR - Error analyzing frame content: name 'extract_dsa_topics' is not defined
+2025-07-07 12:53:55,082 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 12:53:55,082 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: cg6JGiXhQ9c
+2025-07-07 12:54:00,676 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.json
+2025-07-07 12:54:00,677 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/cg6JGiXhQ9c_summary.md
+2025-07-07 12:54:00,677 - ai_engine.summarizer - INFO - Summary generation completed for video: cg6JGiXhQ9c
+2025-07-07 12:54:00,677 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-07 12:54:00,677 - chatbot.vector_store - INFO - Storing content for video: cg6JGiXhQ9c
+2025-07-07 12:56:08,853 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 12:56:08,854 - chatbot.vector_store - INFO - Stored 134 documents for video: cg6JGiXhQ9c
+2025-07-07 12:56:08,854 - utils.helpers - INFO - Video processing completed successfully in 271.08 seconds
+2025-07-07 12:56:08,854 - utils.helpers - INFO - Cleaning up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:56:08,858 - video_processor.extractor - INFO - Cleaned up temporary files for video: cg6JGiXhQ9c
+2025-07-07 12:58:08,839 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 12:58:08,841 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 12:58:47,469 - chatbot.query_processor - INFO - Processing query for video cg6JGiXhQ9c: is  any payment related stuff discussed in the vid...
+2025-07-07 12:58:47,601 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 12:58:47,602 - chatbot.vector_store - INFO - Found 6 results for query: is  any payment related stuff discussed in the vid...
+2025-07-07 13:04:29,369 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 13:04:30,560 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 13:04:30,583 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 13:04:30,729 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:04:30,730 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 13:04:30,750 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:06:38,824 - video_processor.downloader - ERROR - Error getting video info: [0;31mERROR:[0m [generic] 'Image https://www.youtube.com/watch?v=0X-fV-1ir9c' is not a valid URL. Set --default-search "ytsearch" (or run  yt-dlp "ytsearch:Image https://www.youtube.com/watch?v=0X-fV-1ir9c" ) to search YouTube
+2025-07-07 13:06:38,824 - utils.helpers - ERROR - Error validating video requirements: [0;31mERROR:[0m [generic] 'Image https://www.youtube.com/watch?v=0X-fV-1ir9c' is not a valid URL. Set --default-search "ytsearch" (or run  yt-dlp "ytsearch:Image https://www.youtube.com/watch?v=0X-fV-1ir9c" ) to search YouTube
+2025-07-07 13:11:00,102 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=0X-fV-1ir9c
+2025-07-07 13:11:00,103 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 13:11:08,089 - video_processor.downloader - INFO - Downloading video: Introduction to STACKS | Data Structures & Algorithms | Lecture 66
+2025-07-07 13:11:13,039 - video_processor.downloader - ERROR - Error downloading video: Downloaded video file not found
+2025-07-07 13:11:13,039 - utils.helpers - ERROR - Error in video processing pipeline: Downloaded video file not found
+2025-07-07 13:11:13,040 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 50, in process_video
+    video_metadata = self.downloader.download_youtube_video(video_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/downloader.py", line 71, in download_youtube_video
+    raise FileNotFoundError("Downloaded video file not found")
+FileNotFoundError: Downloaded video file not found
+
+2025-07-07 13:11:57,546 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=0X-fV-1ir9c
+2025-07-07 13:11:57,546 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 13:12:31,183 - video_processor.downloader - INFO - Downloading video: Introduction to STACKS | Data Structures & Algorithms | Lecture 66
+2025-07-07 13:12:38,827 - video_processor.downloader - ERROR - Error downloading video: Downloaded video file not found
+2025-07-07 13:12:38,828 - utils.helpers - ERROR - Error in video processing pipeline: Downloaded video file not found
+2025-07-07 13:12:38,828 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 50, in process_video
+    video_metadata = self.downloader.download_youtube_video(video_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/downloader.py", line 71, in download_youtube_video
+    raise FileNotFoundError("Downloaded video file not found")
+FileNotFoundError: Downloaded video file not found
+
+2025-07-07 13:14:52,860 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=NlHupEeDXzY
+2025-07-07 13:14:52,860 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 13:15:00,812 - video_processor.downloader - INFO - Downloading video: Valid Parentheses | Stack | Lecture 67
+2025-07-07 13:15:05,674 - video_processor.downloader - ERROR - Error downloading video: Downloaded video file not found
+2025-07-07 13:15:05,674 - utils.helpers - ERROR - Error in video processing pipeline: Downloaded video file not found
+2025-07-07 13:15:05,675 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 50, in process_video
+    video_metadata = self.downloader.download_youtube_video(video_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/downloader.py", line 71, in download_youtube_video
+    raise FileNotFoundError("Downloaded video file not found")
+FileNotFoundError: Downloaded video file not found
+
+2025-07-07 13:16:09,491 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 13:16:10,147 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 13:16:10,167 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 13:16:10,284 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:16:10,285 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 13:16:10,332 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:17:53,989 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=XmRrGzR6udg
+2025-07-07 13:17:53,989 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 13:17:56,870 - video_processor.downloader - INFO - Downloading video: L5. Add 2 numbers in LinkedList | Dummy Node Approach
+2025-07-07 13:17:59,172 - video_processor.downloader - ERROR - Error downloading video: Downloaded video file not found
+2025-07-07 13:17:59,172 - utils.helpers - ERROR - Error in video processing pipeline: Downloaded video file not found
+2025-07-07 13:17:59,172 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/pipeline.py", line 50, in process_video
+    video_metadata = self.downloader.download_youtube_video(video_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d1e/Work/Final_Sem/DSA_Summarizer/src/video_processor/downloader.py", line 71, in download_youtube_video
+    raise FileNotFoundError("Downloaded video file not found")
+FileNotFoundError: Downloaded video file not found
+
+2025-07-07 13:21:11,676 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 13:21:12,337 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 13:21:12,349 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 13:21:12,419 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:21:12,420 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 13:21:12,430 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:22:42,017 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=XmRrGzR6udg
+2025-07-07 13:22:42,018 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 13:22:44,343 - video_processor.downloader - INFO - Downloading video: L5. Add 2 numbers in LinkedList | Dummy Node Approach
+2025-07-07 13:23:20,399 - video_processor.downloader - INFO - Successfully downloaded: L5. Add 2 numbers in LinkedList | Dummy Node Approach
+2025-07-07 13:23:20,400 - utils.helpers - INFO - Video metadata obtained for: L5. Add 2 numbers in LinkedList | Dummy Node Approach
+2025-07-07 13:23:20,400 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 13:23:20,400 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/XmRrGzR6udg.mp4
+2025-07-07 13:23:23,943 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/XmRrGzR6udg_audio.wav
+2025-07-07 13:23:23,943 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 13:23:23,943 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/XmRrGzR6udg.mp4
+2025-07-07 13:23:30,408 - video_processor.extractor - INFO - Extracted 30 frames
+2025-07-07 13:23:30,408 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 13:23:30,408 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/XmRrGzR6udg_audio.wav
+2025-07-07 13:23:30,409 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 13:25:53,791 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/XmRrGzR6udg_transcription.json
+2025-07-07 13:25:53,791 - ai_engine.transcriber - INFO - Transcription completed for video: XmRrGzR6udg
+2025-07-07 13:25:53,791 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 13:25:53,792 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: XmRrGzR6udg
+2025-07-07 13:25:53,802 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/XmRrGzR6udg_analysis.json
+2025-07-07 13:25:53,802 - ai_engine.content_analyzer - INFO - Content analysis completed for video: XmRrGzR6udg
+2025-07-07 13:25:53,802 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 13:25:53,802 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 13:25:53,802 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: XmRrGzR6udg
+2025-07-07 13:26:10,495 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/XmRrGzR6udg_summary.json
+2025-07-07 13:26:10,495 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/XmRrGzR6udg_summary.md
+2025-07-07 13:26:10,495 - ai_engine.summarizer - INFO - Summary generation completed for video: XmRrGzR6udg
+2025-07-07 13:26:10,495 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-07 13:26:10,495 - chatbot.vector_store - INFO - Storing content for video: XmRrGzR6udg
+2025-07-07 13:26:22,222 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:26:22,223 - chatbot.vector_store - INFO - Stored 286 documents for video: XmRrGzR6udg
+2025-07-07 13:26:22,224 - utils.helpers - INFO - Video processing completed successfully in 220.21 seconds
+2025-07-07 13:26:22,224 - utils.helpers - INFO - Cleaning up temporary files for video: XmRrGzR6udg
+2025-07-07 13:26:22,230 - video_processor.extractor - INFO - Cleaned up temporary files for video: XmRrGzR6udg
+2025-07-07 13:28:56,951 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:28:56,953 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 13:29:20,654 - chatbot.query_processor - INFO - Processing query for video XmRrGzR6udg: can you provide the code snippets  that was in the...
+2025-07-07 13:29:20,713 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 13:29:20,713 - chatbot.vector_store - INFO - Found 6 results for query: can you provide the code snippets  that was in the...
+2025-07-07 21:25:59,901 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-07 21:26:00,760 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-07 21:26:00,781 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-07 21:26:00,882 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 21:26:00,883 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 21:26:00,912 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 21:29:11,642 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=mB5HXBb_HY8
+2025-07-07 21:29:11,643 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 21:29:13,302 - video_processor.downloader - INFO - Downloading video: 2.7.2.  Merge Sort Algorithm
+2025-07-07 21:30:14,495 - video_processor.downloader - INFO - Successfully downloaded: 2.7.2.  Merge Sort Algorithm
+2025-07-07 21:30:14,496 - utils.helpers - INFO - Video metadata obtained for: 2.7.2.  Merge Sort Algorithm
+2025-07-07 21:30:14,496 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 21:30:14,496 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/mB5HXBb_HY8.mp4
+2025-07-07 21:30:20,152 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/mB5HXBb_HY8_audio.wav
+2025-07-07 21:30:20,152 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 21:30:20,152 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/mB5HXBb_HY8.mp4
+2025-07-07 21:30:27,355 - video_processor.extractor - INFO - Extracted 41 frames
+2025-07-07 21:30:27,355 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 21:30:27,355 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/mB5HXBb_HY8_audio.wav
+2025-07-07 21:30:27,355 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 21:34:58,826 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/mB5HXBb_HY8_transcription.json
+2025-07-07 21:34:58,826 - ai_engine.transcriber - INFO - Transcription completed for video: mB5HXBb_HY8
+2025-07-07 21:34:58,826 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 21:34:58,826 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: mB5HXBb_HY8
+2025-07-07 21:34:58,836 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/mB5HXBb_HY8_analysis.json
+2025-07-07 21:34:58,836 - ai_engine.content_analyzer - INFO - Content analysis completed for video: mB5HXBb_HY8
+2025-07-07 21:34:58,836 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 21:34:58,837 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 21:34:58,837 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: mB5HXBb_HY8
+2025-07-07 21:35:09,967 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/mB5HXBb_HY8_summary.json
+2025-07-07 21:35:09,967 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/mB5HXBb_HY8_summary.md
+2025-07-07 21:35:09,967 - ai_engine.summarizer - INFO - Summary generation completed for video: mB5HXBb_HY8
+2025-07-07 21:35:09,967 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-07 21:35:09,967 - chatbot.vector_store - INFO - Storing content for video: mB5HXBb_HY8
+2025-07-07 21:35:19,343 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 21:35:19,344 - chatbot.vector_store - INFO - Stored 194 documents for video: mB5HXBb_HY8
+2025-07-07 21:35:19,344 - utils.helpers - INFO - Video processing completed successfully in 367.70 seconds
+2025-07-07 21:35:19,344 - utils.helpers - INFO - Cleaning up temporary files for video: mB5HXBb_HY8
+2025-07-07 21:35:19,365 - video_processor.extractor - INFO - Cleaned up temporary files for video: mB5HXBb_HY8
+2025-07-07 21:37:54,611 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 21:37:54,613 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-07 21:38:15,000 - chatbot.query_processor - INFO - Processing query for video mB5HXBb_HY8: can you provide the code implementation for the vi...
+2025-07-07 21:38:15,002 - chatbot.vector_store - ERROR - Error searching content: Expected where to have exactly one operator, got {'video_id': 'mB5HXBb_HY8', 'content_type': {'$in': ['code', 'transcription']}}
+2025-07-07 21:38:51,569 - chatbot.query_processor - INFO - Processing query for video mB5HXBb_HY8: what is our video topic?...
+2025-07-07 21:38:51,614 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2025-07-07 21:38:51,614 - chatbot.vector_store - INFO - Found 6 results for query: what is our video topic?...
+2025-07-07 21:39:10,801 - chatbot.query_processor - INFO - Processing query for video mB5HXBb_HY8: now provide me with an example python code for our...
+2025-07-07 21:39:10,869 - chatbot.vector_store - INFO - Found 6 results for query: now provide me with an example python code for our...
+2025-07-07 21:41:34,289 - chatbot.query_processor - INFO - Processing query for video mB5HXBb_HY8: https://www.youtube.com/watch?v=7h1s2SojIRw
+
+
+can ...
+2025-07-07 21:41:34,343 - chatbot.vector_store - INFO - Found 6 results for query: https://www.youtube.com/watch?v=7h1s2SojIRw
+
+
+can ...
+2025-07-07 21:43:10,594 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=7h1s2SojIRw
+2025-07-07 21:43:10,595 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-07 21:43:12,319 - video_processor.downloader - INFO - Downloading video: 2.8.1  QuickSort Algorithm
+2025-07-07 21:46:29,232 - video_processor.downloader - INFO - Successfully downloaded: 2.8.1  QuickSort Algorithm
+2025-07-07 21:46:29,233 - utils.helpers - INFO - Video metadata obtained for: 2.8.1  QuickSort Algorithm
+2025-07-07 21:46:29,233 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-07 21:46:29,233 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/7h1s2SojIRw.mp4
+2025-07-07 21:46:32,266 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/7h1s2SojIRw_audio.wav
+2025-07-07 21:46:32,266 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-07 21:46:32,266 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/7h1s2SojIRw.mp4
+2025-07-07 21:46:36,219 - video_processor.extractor - INFO - Extracted 28 frames
+2025-07-07 21:46:36,219 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-07 21:46:36,219 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/7h1s2SojIRw_audio.wav
+2025-07-07 21:46:36,219 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-07 21:48:35,605 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/7h1s2SojIRw_transcription.json
+2025-07-07 21:48:35,605 - ai_engine.transcriber - INFO - Transcription completed for video: 7h1s2SojIRw
+2025-07-07 21:48:35,606 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-07 21:48:35,606 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: 7h1s2SojIRw
+2025-07-07 21:48:35,615 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/7h1s2SojIRw_analysis.json
+2025-07-07 21:48:35,615 - ai_engine.content_analyzer - INFO - Content analysis completed for video: 7h1s2SojIRw
+2025-07-07 21:48:35,615 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-07 21:48:35,615 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-07 21:48:35,615 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: 7h1s2SojIRw
+2025-07-07 21:48:41,522 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/7h1s2SojIRw_summary.json
+2025-07-07 21:48:41,523 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/7h1s2SojIRw_summary.md
+2025-07-07 21:48:41,523 - ai_engine.summarizer - INFO - Summary generation completed for video: 7h1s2SojIRw
+2025-07-07 21:48:41,523 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-07 21:48:41,523 - chatbot.vector_store - INFO - Storing content for video: 7h1s2SojIRw
+2025-07-07 21:48:52,619 - chatbot.vector_store - INFO - Stored 221 documents for video: 7h1s2SojIRw
+2025-07-07 21:48:52,619 - utils.helpers - INFO - Video processing completed successfully in 342.02 seconds
+2025-07-07 21:48:52,619 - utils.helpers - INFO - Cleaning up temporary files for video: 7h1s2SojIRw
+2025-07-07 21:48:52,631 - video_processor.extractor - INFO - Cleaned up temporary files for video: 7h1s2SojIRw
+2025-07-08 09:09:34,003 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-08 09:09:35,260 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-08 09:09:35,293 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-08 09:09:35,463 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 09:09:35,465 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-08 09:09:35,520 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 09:11:53,787 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=dmb1i4oN5oE
+2025-07-08 09:11:53,809 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-08 09:12:01,193 - video_processor.downloader - INFO - Downloading video: 2.1 Introduction to Linked List | Need of Linked List | DSA Tutorials
+2025-07-08 09:12:16,992 - video_processor.downloader - INFO - Successfully downloaded: 2.1 Introduction to Linked List | Need of Linked List | DSA Tutorials
+2025-07-08 09:12:16,993 - utils.helpers - INFO - Video metadata obtained for: 2.1 Introduction to Linked List | Need of Linked List | DSA Tutorials
+2025-07-08 09:12:16,993 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-08 09:12:16,993 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/dmb1i4oN5oE.mp4
+2025-07-08 09:12:25,467 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/dmb1i4oN5oE_audio.wav
+2025-07-08 09:12:25,467 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-08 09:12:25,468 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/dmb1i4oN5oE.mp4
+2025-07-08 09:12:40,774 - video_processor.extractor - INFO - Extracted 45 frames
+2025-07-08 09:12:40,774 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-08 09:12:40,774 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/dmb1i4oN5oE_audio.wav
+2025-07-08 09:12:40,776 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-08 09:18:41,716 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/dmb1i4oN5oE_transcription.json
+2025-07-08 09:18:41,716 - ai_engine.transcriber - INFO - Transcription completed for video: dmb1i4oN5oE
+2025-07-08 09:18:41,716 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-08 09:18:41,716 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: dmb1i4oN5oE
+2025-07-08 09:18:41,736 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/dmb1i4oN5oE_analysis.json
+2025-07-08 09:18:41,736 - ai_engine.content_analyzer - INFO - Content analysis completed for video: dmb1i4oN5oE
+2025-07-08 09:18:41,736 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-08 09:18:41,737 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-08 09:18:41,737 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: dmb1i4oN5oE
+2025-07-08 09:19:00,098 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/dmb1i4oN5oE_summary.json
+2025-07-08 09:19:00,098 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/dmb1i4oN5oE_summary.md
+2025-07-08 09:19:00,099 - ai_engine.summarizer - INFO - Summary generation completed for video: dmb1i4oN5oE
+2025-07-08 09:19:00,099 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-08 09:19:00,099 - chatbot.vector_store - INFO - Storing content for video: dmb1i4oN5oE
+2025-07-08 09:19:16,593 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 09:19:16,594 - chatbot.vector_store - INFO - Stored 335 documents for video: dmb1i4oN5oE
+2025-07-08 09:19:16,594 - utils.helpers - INFO - Video processing completed successfully in 442.81 seconds
+2025-07-08 09:19:16,594 - utils.helpers - INFO - Cleaning up temporary files for video: dmb1i4oN5oE
+2025-07-08 09:19:16,619 - video_processor.extractor - INFO - Cleaned up temporary files for video: dmb1i4oN5oE
+2025-07-08 09:34:16,170 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 09:34:16,171 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-08 12:05:10,440 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-08 12:05:11,257 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-08 12:05:11,274 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-08 12:05:11,358 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 12:05:11,359 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-08 12:05:11,395 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 12:08:45,363 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=qf6qp7GzD5Q
+2025-07-08 12:08:45,364 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-08 12:08:47,452 - video_processor.downloader - INFO - Downloading video: L6. Odd Even Linked List | Multiple Approaches
+2025-07-08 12:08:59,793 - video_processor.downloader - INFO - Successfully downloaded: L6. Odd Even Linked List | Multiple Approaches
+2025-07-08 12:08:59,793 - utils.helpers - INFO - Video metadata obtained for: L6. Odd Even Linked List | Multiple Approaches
+2025-07-08 12:08:59,793 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-08 12:08:59,793 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/qf6qp7GzD5Q.mp4
+2025-07-08 12:09:05,355 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/qf6qp7GzD5Q_audio.wav
+2025-07-08 12:09:05,355 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-08 12:09:05,355 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/qf6qp7GzD5Q.mp4
+2025-07-08 12:09:14,669 - video_processor.extractor - INFO - Extracted 49 frames
+2025-07-08 12:09:14,669 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-08 12:09:14,669 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/qf6qp7GzD5Q_audio.wav
+2025-07-08 12:09:14,670 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-08 12:13:04,683 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/qf6qp7GzD5Q_transcription.json
+2025-07-08 12:13:04,683 - ai_engine.transcriber - INFO - Transcription completed for video: qf6qp7GzD5Q
+2025-07-08 12:13:04,684 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-08 12:13:04,684 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: qf6qp7GzD5Q
+2025-07-08 12:13:04,702 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/qf6qp7GzD5Q_analysis.json
+2025-07-08 12:13:04,702 - ai_engine.content_analyzer - INFO - Content analysis completed for video: qf6qp7GzD5Q
+2025-07-08 12:13:04,702 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-08 12:13:04,702 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-08 12:13:04,703 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: qf6qp7GzD5Q
+2025-07-08 12:13:18,947 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/qf6qp7GzD5Q_summary.json
+2025-07-08 12:13:18,948 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/qf6qp7GzD5Q_summary.md
+2025-07-08 12:13:18,948 - ai_engine.summarizer - INFO - Summary generation completed for video: qf6qp7GzD5Q
+2025-07-08 12:13:18,948 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-08 12:13:18,948 - chatbot.vector_store - INFO - Storing content for video: qf6qp7GzD5Q
+2025-07-08 12:13:41,198 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 12:13:41,199 - chatbot.vector_store - INFO - Stored 513 documents for video: qf6qp7GzD5Q
+2025-07-08 12:13:41,200 - utils.helpers - INFO - Video processing completed successfully in 295.84 seconds
+2025-07-08 12:13:41,200 - utils.helpers - INFO - Cleaning up temporary files for video: qf6qp7GzD5Q
+2025-07-08 12:13:41,221 - video_processor.extractor - INFO - Cleaned up temporary files for video: qf6qp7GzD5Q
+2025-07-08 12:15:32,434 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-08 12:15:32,435 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-27 19:45:17,090 - ai_engine.transcriber - INFO - Loading Whisper model: base
+2025-07-27 19:45:18,286 - ai_engine.transcriber - INFO - Whisper model loaded successfully
+2025-07-27 19:45:18,302 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-27 19:45:18,409 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-07-27 19:45:18,410 - chatbot.vector_store - INFO - Loaded existing collection: dsa_videos
+2025-07-27 19:45:18,452 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionGetEvent: capture() takes 1 positional argument but 3 were given
+2025-07-27 19:46:45,910 - utils.helpers - INFO - Starting video processing pipeline for: https://www.youtube.com/watch?v=8MNB0Mba_Dc
+2025-07-27 19:46:45,910 - utils.helpers - INFO - Step 1: Downloading video from YouTube...
+2025-07-27 19:46:48,175 - video_processor.downloader - INFO - Downloading video: Quick Sort Algorithm - Lecture 51 of Complete DSA Placement Series
+2025-07-27 19:48:05,448 - video_processor.downloader - INFO - Successfully downloaded: Quick Sort Algorithm - Lecture 51 of Complete DSA Placement Series
+2025-07-27 19:48:05,449 - utils.helpers - INFO - Video metadata obtained for: Quick Sort Algorithm - Lecture 51 of Complete DSA Placement Series
+2025-07-27 19:48:05,449 - utils.helpers - INFO - Step 2: Extracting audio...
+2025-07-27 19:48:05,449 - video_processor.extractor - INFO - Extracting audio from: ./data/videos/8MNB0Mba_Dc.mp4
+2025-07-27 19:48:10,302 - video_processor.extractor - INFO - Audio extracted to: ./data/temp/8MNB0Mba_Dc_audio.wav
+2025-07-27 19:48:10,302 - utils.helpers - INFO - Step 3: Extracting frames...
+2025-07-27 19:48:10,302 - video_processor.extractor - INFO - Extracting frames from: ./data/videos/8MNB0Mba_Dc.mp4
+2025-07-27 19:48:20,572 - video_processor.extractor - INFO - Extracted 53 frames
+2025-07-27 19:48:20,572 - utils.helpers - INFO - Step 4: Transcribing audio...
+2025-07-27 19:48:20,572 - ai_engine.transcriber - INFO - Transcribing audio: ./data/temp/8MNB0Mba_Dc_audio.wav
+2025-07-27 19:48:20,573 - py.warnings - WARNING - /home/d1e/Work/Final_Sem/DSA_Summarizer/thesis_env/lib/python3.11/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+
+2025-07-27 19:54:54,209 - ai_engine.transcriber - INFO - Transcription saved to: ./data/summaries/transcriptions/8MNB0Mba_Dc_transcription.json
+2025-07-27 19:54:54,209 - ai_engine.transcriber - INFO - Transcription completed for video: 8MNB0Mba_Dc
+2025-07-27 19:54:54,209 - utils.helpers - INFO - Step 5: Analyzing content...
+2025-07-27 19:54:54,210 - ai_engine.content_analyzer - INFO - Analyzing transcription for video: 8MNB0Mba_Dc
+2025-07-27 19:54:54,233 - ai_engine.content_analyzer - INFO - Content analysis saved to: ./data/summaries/content_analysis/8MNB0Mba_Dc_analysis.json
+2025-07-27 19:54:54,233 - ai_engine.content_analyzer - INFO - Content analysis completed for video: 8MNB0Mba_Dc
+2025-07-27 19:54:54,234 - utils.helpers - INFO - Step 6: Analyzing frames...
+2025-07-27 19:54:54,234 - utils.helpers - INFO - Step 7: Generating comprehensive summary...
+2025-07-27 19:54:54,234 - ai_engine.summarizer - INFO - Generating comprehensive summary for video: 8MNB0Mba_Dc
+2025-07-27 19:55:04,466 - ai_engine.summarizer - INFO - Summary saved to: ./data/summaries/8MNB0Mba_Dc_summary.json
+2025-07-27 19:55:04,466 - ai_engine.summarizer - INFO - Markdown summary saved to: ./data/summaries/8MNB0Mba_Dc_summary.md
+2025-07-27 19:55:04,466 - ai_engine.summarizer - INFO - Summary generation completed for video: 8MNB0Mba_Dc
+2025-07-27 19:55:04,466 - utils.helpers - INFO - Step 8: Storing content in vector database...
+2025-07-27 19:55:04,466 - chatbot.vector_store - INFO - Storing content for video: 8MNB0Mba_Dc
+2025-07-27 19:55:31,058 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-07-27 19:55:31,060 - chatbot.vector_store - INFO - Stored 652 documents for video: 8MNB0Mba_Dc
+2025-07-27 19:55:31,060 - utils.helpers - INFO - Video processing completed successfully in 525.15 seconds
+2025-07-27 19:55:31,061 - utils.helpers - INFO - Cleaning up temporary files for video: 8MNB0Mba_Dc
+2025-07-27 19:55:31,068 - video_processor.extractor - INFO - Cleaned up temporary files for video: 8MNB0Mba_Dc

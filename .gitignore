@@ -1,2 +1,9 @@
 thesis_env/
 plan.txt
+
+structure/
+
+data/
+*.log
+*.pyc
+__pycache__/

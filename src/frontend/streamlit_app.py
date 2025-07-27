@@ -423,7 +423,9 @@ def show_summary_page():
             st.header("📈 Topic Timeline")
             
             for item in summary_data['topic_timeline'][:10]:  # Show first 10 items
-                st.write(f"**{item['timestamp_formatted']}**: {item['content']} ({item['type']})")
+                content = item.get('topic', item.get('content', 'Unknown topic'))
+                item_type = item.get('type', 'topic')
+                st.write(f"**{item['timestamp_formatted']}**: {content} ({item_type})")
         
         # Next steps
         st.markdown("---")

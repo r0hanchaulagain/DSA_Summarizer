@@ -18,7 +18,7 @@ class VideoSummarizer:
     
     def __init__(self):
         genai.configure(api_key=config.GEMINI_API_KEY)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
     
     def generate_comprehensive_summary(
         self, 
@@ -169,7 +169,7 @@ class VideoSummarizer:
                         'end_time': section_end,
                         'start_formatted': format_timestamp(current_section_start),
                         'end_formatted': format_timestamp(section_end),
-                        'topics_covered': [topic['content'] for topic in section_topics],
+                        'topics_covered': [topic.get('topic', topic.get('content', 'Unknown')) for topic in section_topics],
                         'summary': section_summary,
                         'segment_count': len(section_segments)
                     })
@@ -189,7 +189,7 @@ class VideoSummarizer:
             if not section_text.strip():
                 return "No significant content in this section."
             
-            topics_str = ', '.join(set([topic['content'] for topic in section_topics]))
+            topics_str = ', '.join(set([topic.get('topic', topic.get('content', 'Unknown')) for topic in section_topics]))
             
             prompt = f"""
             Summarize this section of a DSA educational video in 2-3 sentences:
@@ -557,8 +557,10 @@ class VideoSummarizer:
             markdown_lines.extend(["## Topic Timeline", ""])
             
             for item in summary_data['topic_timeline'][:10]:  # Limit to first 10 items
+                topic = item.get('topic', item.get('content', 'Unknown topic'))
+                item_type = item.get('type', 'topic')
                 markdown_lines.append(
-                    f"- **{item['timestamp_formatted']}**: {item['content']} ({item['type']})"
+                    f"- **{item['timestamp_formatted']}**: {topic} ({item_type})"
                 )
             
             markdown_lines.append("")

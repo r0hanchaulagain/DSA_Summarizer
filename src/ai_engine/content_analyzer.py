@@ -1,5 +1,6 @@
 """Analyze video content for DSA topics and concepts."""
 
+import os
 import re
 import logging
 from typing import Dict, List, Any, Optional, Tuple
@@ -474,3 +475,30 @@ class ContentAnalyzer:
         except Exception as e:
             logger.error(f"Error generating topic timeline: {e}")
             return []
+
+def extract_dsa_topics(text: str, dsa_topics: List[str]) -> List[str]:
+    """Extract DSA topics from text content."""
+    found_topics = []
+    text_lower = text.lower()
+    
+    for topic in dsa_topics:
+        if topic.lower() in text_lower:
+            found_topics.append(topic)
+    
+    return found_topics
+
+def detect_programming_language(text: str) -> str:
+    """Detect programming language from text content."""
+    text_lower = text.lower()
+    
+    # Simple language detection based on keywords
+    if 'def ' in text_lower or 'import ' in text_lower or 'print(' in text_lower:
+        return 'python'
+    elif 'public class' in text_lower or 'System.out' in text_lower:
+        return 'java'
+    elif '#include' in text_lower or 'cout' in text_lower or 'std::' in text_lower:
+        return 'cpp'
+    elif 'function ' in text_lower or 'console.log' in text_lower or 'let ' in text_lower:
+        return 'javascript'
+    else:
+        return 'unknown'
