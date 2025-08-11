@@ -1,13 +1,13 @@
 """Query processor for the DSA video chatbot."""
 
 import logging
-import google.generativeai as genai
 from typing import Dict, List, Any, Optional
 import re
 
 from chatbot.vector_store import VideoVectorStore
 from utils.config import config
 from utils.helpers import logger
+from ai_engine.local_llm import local_llm_manager
 
 logger = logging.getLogger(__name__)
 
@@ -15,8 +15,7 @@ class QueryProcessor:
     """Process user queries and generate responses about video content."""
     
     def __init__(self):
-        genai.configure(api_key=config.GEMINI_API_KEY)
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        self.llm_manager = local_llm_manager
         self.vector_store = VideoVectorStore()
         
         # Query intent patterns
@@ -325,16 +324,8 @@ class QueryProcessor:
                 Focus on being educational and helpful for someone learning DSA concepts.
                 """
             
-            # Generate response
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=500,
-                    temperature=0.3
-                )
-            )
-            
-            answer = response.text.strip()
+            # Generate response using local LLM
+            answer = self.llm_manager.generate_response(prompt, context)
             
             # Format final response
             return {

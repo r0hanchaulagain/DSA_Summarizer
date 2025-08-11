@@ -1,8 +1,7 @@
-"""Generate comprehensive video summaries using AI."""
+"""Generate comprehensive video summaries using local AI."""
 
 import os
 import logging
-import google.generativeai as genai
 from typing import Dict, List, Any, Optional
 import json
 import markdown2
@@ -10,15 +9,30 @@ from datetime import datetime
 
 from utils.config import config
 from utils.helpers import logger, format_timestamp, ensure_directory_exists
+from ai_engine.local_llm import local_llm_manager
 
 logger = logging.getLogger(__name__)
 
 class VideoSummarizer:
-    """Generate comprehensive summaries of DSA videos."""
+    """Generate comprehensive summaries of DSA videos using local LLM."""
     
     def __init__(self):
-        genai.configure(api_key=config.GEMINI_API_KEY)
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        self.llm_manager = local_llm_manager
+        self.gemini_available = self._check_gemini_availability()
+    
+    def _check_gemini_availability(self) -> bool:
+        """Check if Gemini API is available for enhanced summaries."""
+        try:
+            if config.GEMINI_API_KEY:
+                import google.generativeai as genai
+                genai.configure(api_key=config.GEMINI_API_KEY)
+                # Test if we can create a model instance
+                model = genai.GenerativeModel('gemini-1.5-flash')
+                return True
+            return False
+        except Exception as e:
+            logger.warning(f"Gemini not available: {e}")
+            return False
     
     def generate_comprehensive_summary(
         self, 
@@ -88,6 +102,216 @@ class VideoSummarizer:
             logger.error(f"Error generating comprehensive summary: {e}")
             raise
     
+    def enhance_summary_with_gemini(self, video_id: str) -> Dict[str, Any]:
+        """
+        Enhance an existing local LLM summary using Gemini API.
+        
+        Args:
+            video_id: ID of the video to enhance
+            
+        Returns:
+            Enhanced summary data
+        """
+        try:
+            if not self.gemini_available:
+                raise Exception("Gemini API not available. Please check your API key.")
+            
+            # Load existing summary
+            existing_summary = self.load_summary(video_id)
+            if not existing_summary:
+                raise Exception(f"No existing summary found for video {video_id}")
+            
+            # Load transcription and content analysis
+            from ai_engine.transcriber import AudioTranscriber
+            from ai_engine.content_analyzer import ContentAnalyzer
+            
+            transcriber = AudioTranscriber()
+            content_analyzer = ContentAnalyzer()
+            
+            transcription_data = transcriber.load_transcription(video_id)
+            content_analysis = content_analyzer.load_analysis(video_id)
+            
+            if not transcription_data or not content_analysis:
+                raise Exception("Missing transcription or content analysis data")
+            
+            # Generate enhanced summary using Gemini
+            enhanced_summary = self._generate_gemini_enhanced_summary(
+                existing_summary, transcription_data, content_analysis
+            )
+            
+            # Save enhanced version
+            enhanced_file = self._save_enhanced_summary(enhanced_summary, video_id)
+            
+            # Generate enhanced markdown
+            enhanced_markdown = self._generate_enhanced_markdown_summary(enhanced_summary, video_id)
+            
+            result = {
+                'video_id': video_id,
+                'enhanced_at': datetime.now().isoformat(),
+                'enhanced_summary': enhanced_summary,
+                'enhanced_file': enhanced_file,
+                'enhanced_markdown': enhanced_markdown,
+                'original_summary': existing_summary,
+                'improvement_notes': self._analyze_improvements(existing_summary, enhanced_summary)
+            }
+            
+            logger.info(f"Gemini enhancement completed for video: {video_id}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error enhancing summary with Gemini: {e}")
+            raise
+    
+    def _generate_gemini_enhanced_summary(
+        self, 
+        existing_summary: Dict, 
+        transcription_data: Dict, 
+        content_analysis: Dict
+    ) -> Dict[str, Any]:
+        """Generate enhanced summary using Gemini API."""
+        try:
+            import google.generativeai as genai
+            
+            # Prepare context for Gemini
+            gemini_context = f"""
+            Original Summary: {existing_summary.get('summary_data', {}).get('executive_summary', '')}
+            
+            Video Content: {transcription_data.get('full_text', '')[:2000]}...
+            
+            DSA Topics Identified: {list(content_analysis.get('topics_mentioned', {}).keys())}
+            Algorithms Mentioned: {[alg['algorithm'] for alg in content_analysis.get('algorithms_mentioned', [])]}
+            
+            Please enhance this summary with:
+            1. More detailed algorithm explanations
+            2. Better code examples and explanations
+            3. Enhanced learning objectives
+            4. More comprehensive topic breakdown
+            5. Better next steps and practice problems
+            6. Improved executive summary
+            """
+            
+            prompt = """
+            As an expert DSA instructor, enhance this video summary significantly.
+            Focus on making it more educational, comprehensive, and actionable for students.
+            Maintain the same structure but improve every section with deeper insights.
+            """
+            
+            # Generate enhanced content using Gemini
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(f"{gemini_context}\n\n{prompt}")
+            
+            # Parse and structure the enhanced response
+            enhanced_content = response.text.strip()
+            
+            # Create enhanced summary structure
+            enhanced_summary = {
+                'executive_summary': self._extract_enhanced_section(enhanced_content, 'executive'),
+                'detailed_breakdown': self._extract_enhanced_section(enhanced_content, 'breakdown'),
+                'learning_objectives': self._extract_enhanced_section(enhanced_content, 'objectives'),
+                'next_steps': self._extract_enhanced_section(enhanced_content, 'next_steps'),
+                'enhancement_notes': 'Enhanced using Gemini API for improved quality and depth',
+                'original_summary_id': existing_summary.get('summary_data', {}).get('video_id', ''),
+                'enhanced_at': datetime.now().isoformat()
+            }
+            
+            return enhanced_summary
+            
+        except Exception as e:
+            logger.error(f"Error generating Gemini enhanced summary: {e}")
+            raise
+    
+    def _extract_enhanced_section(self, content: str, section_type: str) -> str:
+        """Extract specific sections from Gemini response."""
+        # Simple extraction - in practice, you might want more sophisticated parsing
+        if section_type == 'executive':
+            return content[:500] + "..." if len(content) > 500 else content
+        elif section_type == 'breakdown':
+            return content[500:1500] + "..." if len(content) > 1500 else content
+        elif section_type == 'objectives':
+            return content[1500:2000] + "..." if len(content) > 2000 else content
+        else:
+            return content
+    
+    def _save_enhanced_summary(self, enhanced_summary: Dict, video_id: str) -> str:
+        """Save enhanced summary to file."""
+        try:
+            filename = f"enhanced_summary_{video_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            filepath = os.path.join(config.SUMMARIES_DIR, filename)
+            
+            with open(filepath, 'w') as f:
+                json.dump(enhanced_summary, f, indent=2)
+            
+            return filepath
+            
+        except Exception as e:
+            logger.error(f"Error saving enhanced summary: {e}")
+            raise
+    
+    def _generate_enhanced_markdown_summary(self, enhanced_summary: Dict, video_id: str) -> str:
+        """Generate enhanced markdown summary."""
+        try:
+            filename = f"enhanced_summary_{video_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+            filepath = os.path.join(config.SUMMARIES_DIR, filename)
+            
+            markdown_content = self._create_enhanced_markdown_content(enhanced_summary)
+            
+            with open(filepath, 'w') as f:
+                f.write(markdown_content)
+            
+            return filepath
+            
+        except Exception as e:
+            logger.error(f"Error generating enhanced markdown: {e}")
+            raise
+    
+    def _create_enhanced_markdown_content(self, enhanced_summary: Dict) -> str:
+        """Create enhanced markdown content."""
+        content = f"""# Enhanced Video Summary (Gemini Enhanced)
+
+## 🚀 Executive Summary
+{enhanced_summary.get('executive_summary', 'No executive summary available.')}
+
+## 📚 Learning Objectives
+{enhanced_summary.get('learning_objectives', 'No learning objectives available.')}
+
+## 🔍 Detailed Breakdown
+{enhanced_summary.get('detailed_breakdown', 'No detailed breakdown available.')}
+
+## 🎯 Next Steps
+{enhanced_summary.get('next_steps', 'No next steps available.')}
+
+---
+
+*This summary was enhanced using Gemini API for improved quality and depth.*
+*Enhanced at: {enhanced_summary.get('enhanced_at', 'Unknown')}*
+"""
+        return content
+    
+    def _analyze_improvements(self, original: Dict, enhanced: Dict) -> Dict[str, Any]:
+        """Analyze improvements made by Gemini enhancement."""
+        try:
+            original_text = str(original.get('summary_data', {}).get('full_summary', ''))
+            enhanced_text = str(enhanced.get('enhanced_summary', ''))
+            
+            improvements = {
+                'word_count_increase': len(enhanced_text.split()) - len(original_text.split()),
+                'enhancement_ratio': len(enhanced_text) / len(original_text) if len(original_text) > 0 else 1.0,
+                'sections_enhanced': len(enhanced.keys()),
+                'quality_improvements': [
+                    'More detailed explanations',
+                    'Enhanced code examples',
+                    'Better learning objectives',
+                    'Comprehensive topic breakdown',
+                    'Actionable next steps'
+                ]
+            }
+            
+            return improvements
+            
+        except Exception as e:
+            logger.error(f"Error analyzing improvements: {e}")
+            return {'error': str(e)}
+    
     def _generate_executive_summary(self, video_metadata: Dict, content_analysis: Dict) -> str:
         """Generate executive summary of the video."""
         try:
@@ -107,15 +331,7 @@ class VideoSummarizer:
             Focus on what students will learn and the main concepts covered.
             """
             
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=200,
-                    temperature=0.3
-                )
-            )
-            
-            return response.text.strip()
+            return self.llm_manager.generate_response(prompt, "")
             
         except Exception as e:
             logger.error(f"Error generating executive summary: {e}")
@@ -201,15 +417,7 @@ class VideoSummarizer:
             Focus on the key concepts explained and any specific algorithms or data structures discussed.
             """
             
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=150,
-                    temperature=0.3
-                )
-            )
-            
-            return response.text.strip()
+            return self.llm_manager.generate_response(prompt, "")
             
         except Exception as e:
             logger.error(f"Error summarizing section: {e}")
@@ -279,15 +487,7 @@ class VideoSummarizer:
             Keep the explanation educational and suitable for DSA students.
             """
             
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=300,
-                    temperature=0.3
-                )
-            )
-            
-            return response.text.strip()
+            return self.llm_manager.generate_response(prompt, "")
             
         except Exception as e:
             logger.error(f"Error explaining code snippet: {e}")

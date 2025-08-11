@@ -24,13 +24,18 @@ def main():
         print("pip install -r requirements.txt")
         return 1
     
-    # Check if .env file exists
+    # Check if .env file exists (optional now)
     env_file = project_root / ".env"
     if not env_file.exists():
-        print("❌ .env file not found!")
-        print("Please create a .env file with your Gemini API key:")
-        print("GEMINI_API_KEY=your_gemini_api_key_here")
-        return 1
+        print("ℹ️  .env file not found - creating with default settings")
+        print("You can optionally add GEMINI_API_KEY for enhanced features")
+        # Create basic .env file
+        with open(env_file, 'w') as f:
+            f.write("# Optional: Add Gemini API key for enhanced features\n")
+            f.write("# GEMINI_API_KEY=your_key_here\n")
+            f.write("DEBUG=False\n")
+            f.write("LOG_LEVEL=INFO\n")
+        print("✅ Created .env file with default settings")
     
     # Check if data directories exist
     data_dir = project_root / "data"
@@ -43,7 +48,6 @@ def main():
     # Check if requirements are installed
     try:
         import streamlit
-        import google.generativeai as genai
         import whisper
         import chromadb
         print("✅ Required packages found")
