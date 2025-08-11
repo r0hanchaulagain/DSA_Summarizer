@@ -12,15 +12,15 @@ try:
     
     # Test config import
     from utils.config import config
-    print("✅ Config imported successfully")
+    print("Config imported successfully")
     
     # Test local LLM import
     from ai_engine.local_llm import local_llm_manager
-    print("✅ Local LLM manager imported successfully")
+    print("Local LLM manager imported successfully")
     
     # Test summarizer import
     from ai_engine.summarizer import VideoSummarizer
-    print("✅ VideoSummarizer imported successfully")
+    print("VideoSummarizer imported successfully")
     
     # Test local LLM manager
     print(f"Local LLM Manager: {type(local_llm_manager)}")
@@ -29,13 +29,13 @@ try:
     # Test basic response generation
     try:
         response = local_llm_manager.generate_response("Hello, can you explain binary search?", "")
-        print(f"✅ Local LLM response test: {response[:100]}...")
+        print(f"Local LLM response test: {response[:100]}...")
     except Exception as e:
-        print(f"❌ Local LLM response test failed: {e}")
+        print(f"Local LLM response test failed: {e}")
     
-    print("\n🎉 All tests passed! Local LLM system is working.")
+    print("\nAll tests passed! Local LLM system is working.")
     
 except Exception as e:
-    print(f"❌ Test failed: {e}")
+    print(f"Test failed: {e}")
     import traceback
     traceback.print_exc()

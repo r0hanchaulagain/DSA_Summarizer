@@ -1,6 +1,7 @@
 """Generate comprehensive video summaries using local AI."""
 
 import os
+import shutil
 import logging
 from typing import Dict, List, Any, Optional
 import json
@@ -68,6 +69,21 @@ class VideoSummarizer:
             learning_objectives = self._identify_learning_objectives(content_analysis)
             
             next_steps = self._suggest_next_steps(content_analysis)
+
+            # Select and persist key frame images so they survive temp cleanup
+            key_frames: List[Dict[str, Any]] = []
+            if frames_analysis:
+                key_frames = self._select_key_frames(frames_analysis)
+                key_frames = self._persist_key_frames(video_metadata['video_id'], key_frames)
+
+                # Also attach representative frames to each breakdown section
+                detailed_breakdown = self._attach_section_frames(
+                    video_metadata['video_id'], detailed_breakdown, frames_analysis
+                )
+                logger.info(
+                    f"Frame visuals prepared: key_frames={len(key_frames)}, "
+                    f"sections_with_frames={sum(1 for s in detailed_breakdown if s.get('frames'))}"
+                )
             
             summary_document = self._compile_summary_document(
                 video_metadata,
@@ -76,7 +92,8 @@ class VideoSummarizer:
                 code_examples,
                 learning_objectives,
                 next_steps,
-                content_analysis
+                content_analysis,
+                key_frames
             )
             
             # Save summary
@@ -601,7 +618,8 @@ class VideoSummarizer:
         code_examples: List[Dict],
         learning_objectives: List[str],
         next_steps: Dict[str, List[str]],
-        content_analysis: Dict
+        content_analysis: Dict,
+        key_frames: List[Dict[str, Any]]
     ) -> Dict[str, Any]:
         """Compile all summary components into a final document."""
         
@@ -628,6 +646,7 @@ class VideoSummarizer:
             'topic_timeline': timeline,
             'next_steps': next_steps,
             'full_summary': full_summary,
+            'key_frames': key_frames,
             
             'statistics': {
                 'total_topics': len(content_analysis.get('topics_mentioned', {})),
@@ -711,9 +730,29 @@ class VideoSummarizer:
             "",
             summary_data['executive_summary'],
             "",
-            "## Learning Objectives",
+            "## Key Frames",
             ""
         ]
+
+        # Embed key frames if available
+        key_frames = summary_data.get('key_frames', [])
+        if key_frames:
+            for frame in key_frames:
+                ts = frame.get('timestamp_formatted', '')
+                ftype = frame.get('type', 'frame')
+                path = frame.get('frame_path', '')
+                caption = frame.get('caption', '')
+                markdown_lines.append(f"- {ts} • {ftype}")
+                if path:
+                    markdown_lines.extend(["", f"![]({path})"])
+                if caption:
+                    markdown_lines.append(f"_{caption}_")
+                markdown_lines.append("")
+        else:
+            markdown_lines.append("No key frames selected.")
+            markdown_lines.append("")
+
+        markdown_lines.extend(["", "## Learning Objectives", ""])
         
         # Add learning objectives
         for objective in summary_data['learning_objectives']:
@@ -732,6 +771,19 @@ class VideoSummarizer:
             
             if section['topics_covered']:
                 markdown_lines.append(f"**Topics:** {', '.join(section['topics_covered'])}")
+                markdown_lines.append("")
+
+            # Embed section frames if available
+            for frame in section.get('frames', [])[:6]:
+                ts = frame.get('timestamp_formatted', '')
+                ftype = frame.get('type', 'frame')
+                path = frame.get('frame_path', '')
+                caption = frame.get('caption', '')
+                markdown_lines.append(f"- {ts} • {ftype}")
+                if path:
+                    markdown_lines.extend(["", f"![]({path})"])
+                if caption:
+                    markdown_lines.append(f"_{caption}_")
                 markdown_lines.append("")
         
         # Add code examples
@@ -789,6 +841,147 @@ class VideoSummarizer:
         ])
         
         return "\\n".join(markdown_lines)
+
+    def _select_key_frames(self, frames_analysis: Dict[str, Any], max_total: int = 6) -> List[Dict[str, Any]]:
+        """Select a small set of important frames to showcase in the summary."""
+        selected: List[Dict[str, Any]] = []
+
+        def take(items: List[Dict[str, Any]], how_many: int, frame_type: str) -> None:
+            for item in items[:how_many]:
+                caption_topics = item.get('topics_detected', [])
+                caption = ''
+                if caption_topics:
+                    caption = f"Topics: {', '.join(caption_topics)}"
+                selected.append({
+                    'type': frame_type,
+                    'timestamp': item.get('timestamp'),
+                    'timestamp_formatted': item.get('timestamp_formatted'),
+                    'frame_path': item.get('frame_path'),
+                    'caption': caption
+                })
+
+        code_frames = frames_analysis.get('code_frames', [])
+        diagram_frames = frames_analysis.get('diagram_frames', [])
+        text_frames = frames_analysis.get('text_frames', [])
+
+        # Prioritize code frames, then diagrams, then text frames
+        remaining = max_total
+        take(code_frames, min(3, remaining), 'code'); remaining = max_total - len(selected)
+        if remaining > 0:
+            take(diagram_frames, min(2, remaining), 'diagram'); remaining = max_total - len(selected)
+        if remaining > 0:
+            take(text_frames, min(remaining, 2), 'text')
+
+        # Sort by timestamp to present chronologically
+        selected.sort(key=lambda f: (f.get('timestamp') is None, f.get('timestamp', 0)))
+
+        return selected
+
+    def _persist_key_frames(self, video_id: str, key_frames: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Copy selected frame images to a persistent directory and update their paths.
+
+        Frames are initially saved under TEMP_DIR and would be removed during cleanup. We
+        copy them to SUMMARIES_DIR/frames/<video_id>/ and update 'frame_path'.
+        """
+        try:
+            if not key_frames:
+                return key_frames
+
+            target_dir = os.path.join(config.SUMMARIES_DIR, 'frames', video_id)
+            os.makedirs(target_dir, exist_ok=True)
+
+            updated: List[Dict[str, Any]] = []
+            for frame in key_frames:
+                src = frame.get('frame_path')
+                if not src or not os.path.exists(src):
+                    updated.append(frame)
+                    continue
+                filename = os.path.basename(src)
+                dst = os.path.join(target_dir, filename)
+                try:
+                    shutil.copy2(src, dst)
+                    frame_copy = dict(frame)
+                    frame_copy['original_path'] = src
+                    frame_copy['frame_path'] = dst
+                    updated.append(frame_copy)
+
+                except Exception:
+                    logger.warning(f"Failed to persist frame: {src}")
+                    updated.append(frame)
+
+            return updated
+        except Exception:
+            return key_frames
+
+    def _attach_section_frames(
+        self,
+        video_id: str,
+        sections: List[Dict[str, Any]],
+        frames_analysis: Dict[str, Any],
+        max_per_section: int = 4
+    ) -> List[Dict[str, Any]]:
+        """For each section, attach a few representative frames within its time range and persist them.
+
+        Prioritizes code frames, then diagrams, then text. Copies images to summaries dir so they persist.
+        """
+        try:
+            # Build a combined list with type info
+            def tag(frames: List[Dict[str, Any]], ftype: str) -> List[Dict[str, Any]]:
+                tagged = []
+                for fr in frames:
+                    fr_copy = dict(fr)
+                    fr_copy['type'] = ftype
+                    topics = fr_copy.get('topics_detected', [])
+                    fr_copy['caption'] = f"Topics: {', '.join(topics)}" if topics else ''
+                    tagged.append(fr_copy)
+                return tagged
+
+            code_frames = tag(frames_analysis.get('code_frames', []), 'code')
+            diagram_frames = tag(frames_analysis.get('diagram_frames', []), 'diagram')
+            text_frames = tag(frames_analysis.get('text_frames', []), 'text')
+            other_frames = tag(frames_analysis.get('other_frames', []), 'frame')
+
+            for section in sections:
+                start_t = section.get('start_time', 0)
+                end_t = section.get('end_time', 0)
+
+                def in_range(fr):
+                    ts = fr.get('timestamp')
+                    return ts is not None and start_t <= ts < end_t
+
+                selected: List[Dict[str, Any]] = []
+
+                # Helper to take from a list up to remaining slots
+                def take_from(pool: List[Dict[str, Any]], n: int):
+                    nonlocal selected
+                    for fr in pool:
+                        if in_range(fr):
+                            selected.append(fr)
+                            if len(selected) >= n:
+                                break
+
+                remaining = max_per_section
+                take_from(code_frames, remaining)
+                remaining = max_per_section - len(selected)
+                if remaining > 0:
+                    take_from(diagram_frames, remaining)
+                remaining = max_per_section - len(selected)
+                if remaining > 0:
+                    take_from(text_frames, remaining)
+                remaining = max_per_section - len(selected)
+                if remaining > 0:
+                    take_from(other_frames, remaining)
+
+                # Persist images and sort chronologically
+                if selected:
+                    persisted = self._persist_key_frames(video_id, selected)
+                    persisted.sort(key=lambda f: (f.get('timestamp') is None, f.get('timestamp', 0)))
+                    section['frames'] = persisted
+
+
+            return sections
+        except Exception:
+            return sections
     
     def load_summary(self, video_id: str) -> Optional[Dict[str, Any]]:
         """Load existing summary from file."""
@@ -804,3 +997,39 @@ class VideoSummarizer:
         except Exception as e:
             logger.error(f"Error loading summary: {e}")
             return None
+
+    def has_summary(self, video_id: str) -> bool:
+        """Check whether a summary exists for the given video_id."""
+        try:
+            summary_file = os.path.join(config.SUMMARIES_DIR, f"{video_id}_summary.json")
+            return os.path.exists(summary_file)
+        except Exception:
+            return False
+
+    def list_summaries(self) -> List[Dict[str, Any]]:
+        """List all stored summaries with basic metadata."""
+        try:
+            summaries: List[Dict[str, Any]] = []
+            if not os.path.exists(config.SUMMARIES_DIR):
+                return summaries
+            for name in os.listdir(config.SUMMARIES_DIR):
+                if name.endswith('_summary.json'):
+                    path = os.path.join(config.SUMMARIES_DIR, name)
+                    try:
+                        with open(path, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                            summaries.append({
+                                'video_id': data.get('video_id', os.path.splitext(name)[0].replace('_summary', '')),
+                                'title': data.get('title', 'Unknown'),
+                                'generated_at': data.get('generated_at', ''),
+                                'duration_formatted': data.get('duration_formatted', ''),
+                                'file': path
+                            })
+                    except Exception:
+                        continue
+            # Sort by generated_at desc if available
+            summaries.sort(key=lambda x: x.get('generated_at', ''), reverse=True)
+            return summaries
+        except Exception as e:
+            logger.error(f"Error listing summaries: {e}")
+            return []
