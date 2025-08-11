@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-"""
-Startup script for DSA Video Summarizer
-"""
 
 import os
 import sys
@@ -9,8 +6,7 @@ import subprocess
 from pathlib import Path
 
 def main():
-    """Run the DSA Video Summarizer application."""
-    
+        
     # Get the project root directory
     project_root = Path(__file__).parent
     

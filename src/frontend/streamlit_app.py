@@ -74,9 +74,9 @@ def clear_all_history():
         if os.path.exists(config.SUMMARIES_DIR):
             shutil.rmtree(config.SUMMARIES_DIR)
             os.makedirs(config.SUMMARIES_DIR, exist_ok=True)
-            st.success("✅ Summaries directory cleared")
+            st.success("Summaries directory cleared")
         else:
-            st.info("ℹ️ Summaries directory was already empty")
+            st.info("Summaries directory was already empty")
         
         status_text.text("Clearing videos directory...")
         progress_bar.progress(40)
@@ -85,9 +85,9 @@ def clear_all_history():
         if os.path.exists(config.VIDEOS_DIR):
             shutil.rmtree(config.VIDEOS_DIR)
             os.makedirs(config.VIDEOS_DIR, exist_ok=True)
-            st.success("✅ Videos directory cleared")
+            st.success("Videos directory cleared")
         else:
-            st.info("ℹ️ Videos directory was already empty")
+            st.info("Videos directory was already empty")
         
         status_text.text("Clearing temporary files...")
         progress_bar.progress(60)
@@ -96,9 +96,9 @@ def clear_all_history():
         if os.path.exists(config.TEMP_DIR):
             shutil.rmtree(config.TEMP_DIR)
             os.makedirs(config.TEMP_DIR, exist_ok=True)
-            st.success("✅ Temporary files cleared")
+            st.success("Temporary files cleared")
         else:
-            st.info("ℹ️ Temporary directory was already empty")
+            st.info("ℹTemporary directory was already empty")
         
         status_text.text("Clearing vector database...")
         progress_bar.progress(80)
@@ -429,7 +429,7 @@ def show_home_page():
         
         # Sample video for testing
         st.subheader("Try with Sample Video")
-        sample_url = "https://www.youtube.com/watch?v=8hly31xKli0"  # Sample DSA video
+        sample_url = "https://www.youtube.com/watch?v=Xu5RqPdABRE"  # Sample DSA video
         if st.button("Process Sample Video"):
             st.session_state.sample_url = sample_url
             st.info(f"Sample URL loaded: {sample_url}")
