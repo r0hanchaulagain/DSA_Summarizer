@@ -11,8 +11,14 @@ load_dotenv()
 class Config:
     """Application configuration."""
     
-    # API Keys
+    # API Keys (Optional - for local LLM fallback)
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
+    
+    # Local LLM Configuration
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "codellama:7b")
+    OLLAMA_TIMEOUT: int = int(os.getenv("OLLAMA_TIMEOUT", "120"))
+    OLLAMA_RETRY_ATTEMPTS: int = int(os.getenv("OLLAMA_RETRY_ATTEMPTS", "2"))
     
     # Application Settings
     DEBUG: bool = os.getenv("DEBUG", "False").lower() == "true"
@@ -61,9 +67,9 @@ class Config:
     @classmethod
     def validate_api_keys(cls) -> bool:
         """Validate that required API keys are present."""
+        # Gemini API key is now optional since we have local LLM fallback
         if not cls.GEMINI_API_KEY:
-            print("Warning: GEMINI_API_KEY not found in environment variables")
-            return False
+            print("Info: GEMINI_API_KEY not found - will use local LLM model only")
         return True
 
 # Initialize configuration

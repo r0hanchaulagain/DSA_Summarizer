@@ -1,0 +1,57 @@
+Category,Questions
+General Questions,Can you briefly summarize your research?
+General Questions,What inspired you to choose AI and Data Analytics as your topic?
+General Questions,What problem does your research aim to solve?
+General Questions,What are the key contributions of your work?
+General Questions,Who are the primary beneficiaries of your research?
+Literature Review & Background,What are the major works that influenced your research?
+Literature Review & Background,How does your research build upon or differ from previous studies?
+Literature Review & Background,What theoretical frameworks did you use to guide your study?
+Literature Review & Background,Were there any contradicting studies you encountered? How did you address them?
+Literature Review & Background,How does your research contribute to the field of AI and Data Analytics?
+Research Methodology,"What type of data did you use, and how was it collected?"
+Research Methodology,Why did you choose this specific AI/ML model for your research?
+Research Methodology,What preprocessing techniques did you use to clean and prepare your data?
+Research Methodology,How did you handle missing or unstructured data?
+Research Methodology,Why did you choose this particular evaluation metric for your model?
+Research Methodology,How did you validate the performance of your models?
+Research Methodology,What tools and frameworks did you use for implementation?
+Research Methodology,Were there any computational challenges you faced? How did you overcome them?
+Data Analysis & Findings,What patterns or insights did you discover from your data?
+Data Analysis & Findings,How do your results compare with your expectations?
+Data Analysis & Findings,Were there any unexpected findings? How did you interpret them?
+Data Analysis & Findings,How does your model compare with traditional methods or benchmarks?
+Data Analysis & Findings,How confident are you in the generalizability of your results?
+Data Analysis & Findings,How does your research improve decision-making in your chosen domain?
+Model Performance & Optimization,"What were the accuracy, precision, recall, and F1-score of your model?"
+Model Performance & Optimization,"Did you experiment with different algorithms? If so, why did you settle on this one?"
+Model Performance & Optimization,What hyperparameter tuning techniques did you use to improve performance?
+Model Performance & Optimization,Did you encounter any overfitting or underfitting issues? How did you address them?
+Model Performance & Optimization,"How does your model handle new, unseen data?"
+Model Performance & Optimization,What techniques did you use to interpret the AI models decisions?
+Ethical Considerations & Bias in AI,Did you ensure fairness and bias mitigation in your dataset?
+Ethical Considerations & Bias in AI,What are the potential ethical concerns associated with your research?
+Ethical Considerations & Bias in AI,How does your research align with AI ethics and responsible data usage?
+Ethical Considerations & Bias in AI,Are there any privacy concerns related to your data?
+Ethical Considerations & Bias in AI,Could your model be misused? How can this be prevented?
+Ethical Considerations & Bias in AI,What possible human biases might present ethical challenges in your project?
+Real-World Applications & Impact,How can your research be applied in real-world scenarios?
+Real-World Applications & Impact,What industries or sectors could benefit from your findings?
+Real-World Applications & Impact,Have you considered scalability or deployment issues for your AI model?
+Real-World Applications & Impact,"If implemented, how would your model impact business or society?"
+Real-World Applications & Impact,Could your findings lead to policy or regulatory changes?
+Limitations & Future Research,What are the key limitations of your research?
+Limitations & Future Research,"If given more time or resources, what would you improve?"
+Limitations & Future Research,How can future researchers build upon your findings?
+Limitations & Future Research,Are there any alternative methodologies you would explore?
+Limitations & Future Research,What are the next steps in this research area?
+Defense Against Criticism,How would you respond if someone argues your research lacks originality?
+Defense Against Criticism,How do you defend the choice of dataset and model you used?
+Defense Against Criticism,"If someone challenges the validity of your results, how would you respond?"
+Defense Against Criticism,How would you justify the trade-offs between model performance and computational cost?
+Defense Against Criticism,How do you address potential biases in your findings?
+Bias & Ethical Challenges,What potential biases might be present in your literature review?
+Bias & Ethical Challenges,What types of biases could have influenced the selection of tools and technologies in your research?
+Bias & Ethical Challenges,How might data selection bias impact your research findings?
+Bias & Ethical Challenges,What safeguards did you use to minimize cognitive biases in data analysis?
+Bias & Ethical Challenges,How do you ensure that your AI model does not reinforce existing societal biases?

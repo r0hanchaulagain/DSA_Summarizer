@@ -1,8 +1,8 @@
-"""Generate comprehensive video summaries using AI."""
+"""Generate comprehensive video summaries using local AI."""
 
 import os
+import shutil
 import logging
-import google.generativeai as genai
 from typing import Dict, List, Any, Optional
 import json
 import markdown2
@@ -10,15 +10,30 @@ from datetime import datetime
 
 from utils.config import config
 from utils.helpers import logger, format_timestamp, ensure_directory_exists
+from ai_engine.local_llm import local_llm_manager
 
 logger = logging.getLogger(__name__)
 
 class VideoSummarizer:
-    """Generate comprehensive summaries of DSA videos."""
+    """Generate comprehensive summaries of DSA videos using local LLM."""
     
     def __init__(self):
-        genai.configure(api_key=config.GEMINI_API_KEY)
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        self.llm_manager = local_llm_manager
+        self.gemini_available = self._check_gemini_availability()
+    
+    def _check_gemini_availability(self) -> bool:
+        """Check if Gemini API is available for enhanced summaries."""
+        try:
+            if config.GEMINI_API_KEY:
+                import google.generativeai as genai
+                genai.configure(api_key=config.GEMINI_API_KEY)
+                # Test if we can create a model instance
+                model = genai.GenerativeModel('gemini-1.5-flash')
+                return True
+            return False
+        except Exception as e:
+            logger.warning(f"Gemini not available: {e}")
+            return False
     
     def generate_comprehensive_summary(
         self, 
@@ -54,6 +69,21 @@ class VideoSummarizer:
             learning_objectives = self._identify_learning_objectives(content_analysis)
             
             next_steps = self._suggest_next_steps(content_analysis)
+
+            # Select and persist key frame images so they survive temp cleanup
+            key_frames: List[Dict[str, Any]] = []
+            if frames_analysis:
+                key_frames = self._select_key_frames(frames_analysis)
+                key_frames = self._persist_key_frames(video_metadata['video_id'], key_frames)
+
+                # Also attach representative frames to each breakdown section
+                detailed_breakdown = self._attach_section_frames(
+                    video_metadata['video_id'], detailed_breakdown, frames_analysis
+                )
+                logger.info(
+                    f"Frame visuals prepared: key_frames={len(key_frames)}, "
+                    f"sections_with_frames={sum(1 for s in detailed_breakdown if s.get('frames'))}"
+                )
             
             summary_document = self._compile_summary_document(
                 video_metadata,
@@ -62,7 +92,8 @@ class VideoSummarizer:
                 code_examples,
                 learning_objectives,
                 next_steps,
-                content_analysis
+                content_analysis,
+                key_frames
             )
             
             # Save summary
@@ -88,6 +119,216 @@ class VideoSummarizer:
             logger.error(f"Error generating comprehensive summary: {e}")
             raise
     
+    def enhance_summary_with_gemini(self, video_id: str) -> Dict[str, Any]:
+        """
+        Enhance an existing local LLM summary using Gemini API.
+        
+        Args:
+            video_id: ID of the video to enhance
+            
+        Returns:
+            Enhanced summary data
+        """
+        try:
+            if not self.gemini_available:
+                raise Exception("Gemini API not available. Please check your API key.")
+            
+            # Load existing summary
+            existing_summary = self.load_summary(video_id)
+            if not existing_summary:
+                raise Exception(f"No existing summary found for video {video_id}")
+            
+            # Load transcription and content analysis
+            from ai_engine.transcriber import AudioTranscriber
+            from ai_engine.content_analyzer import ContentAnalyzer
+            
+            transcriber = AudioTranscriber()
+            content_analyzer = ContentAnalyzer()
+            
+            transcription_data = transcriber.load_transcription(video_id)
+            content_analysis = content_analyzer.load_analysis(video_id)
+            
+            if not transcription_data or not content_analysis:
+                raise Exception("Missing transcription or content analysis data")
+            
+            # Generate enhanced summary using Gemini
+            enhanced_summary = self._generate_gemini_enhanced_summary(
+                existing_summary, transcription_data, content_analysis
+            )
+            
+            # Save enhanced version
+            enhanced_file = self._save_enhanced_summary(enhanced_summary, video_id)
+            
+            # Generate enhanced markdown
+            enhanced_markdown = self._generate_enhanced_markdown_summary(enhanced_summary, video_id)
+            
+            result = {
+                'video_id': video_id,
+                'enhanced_at': datetime.now().isoformat(),
+                'enhanced_summary': enhanced_summary,
+                'enhanced_file': enhanced_file,
+                'enhanced_markdown': enhanced_markdown,
+                'original_summary': existing_summary,
+                'improvement_notes': self._analyze_improvements(existing_summary, enhanced_summary)
+            }
+            
+            logger.info(f"Gemini enhancement completed for video: {video_id}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error enhancing summary with Gemini: {e}")
+            raise
+    
+    def _generate_gemini_enhanced_summary(
+        self, 
+        existing_summary: Dict, 
+        transcription_data: Dict, 
+        content_analysis: Dict
+    ) -> Dict[str, Any]:
+        """Generate enhanced summary using Gemini API."""
+        try:
+            import google.generativeai as genai
+            
+            # Prepare context for Gemini
+            gemini_context = f"""
+            Original Summary: {existing_summary.get('summary_data', {}).get('executive_summary', '')}
+            
+            Video Content: {transcription_data.get('full_text', '')[:2000]}...
+            
+            DSA Topics Identified: {list(content_analysis.get('topics_mentioned', {}).keys())}
+            Algorithms Mentioned: {[alg['algorithm'] for alg in content_analysis.get('algorithms_mentioned', [])]}
+            
+            Please enhance this summary with:
+            1. More detailed algorithm explanations
+            2. Better code examples and explanations
+            3. Enhanced learning objectives
+            4. More comprehensive topic breakdown
+            5. Better next steps and practice problems
+            6. Improved executive summary
+            """
+            
+            prompt = """
+            As an expert DSA instructor, enhance this video summary significantly.
+            Focus on making it more educational, comprehensive, and actionable for students.
+            Maintain the same structure but improve every section with deeper insights.
+            """
+            
+            # Generate enhanced content using Gemini
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(f"{gemini_context}\n\n{prompt}")
+            
+            # Parse and structure the enhanced response
+            enhanced_content = response.text.strip()
+            
+            # Create enhanced summary structure
+            enhanced_summary = {
+                'executive_summary': self._extract_enhanced_section(enhanced_content, 'executive'),
+                'detailed_breakdown': self._extract_enhanced_section(enhanced_content, 'breakdown'),
+                'learning_objectives': self._extract_enhanced_section(enhanced_content, 'objectives'),
+                'next_steps': self._extract_enhanced_section(enhanced_content, 'next_steps'),
+                'enhancement_notes': 'Enhanced using Gemini API for improved quality and depth',
+                'original_summary_id': existing_summary.get('summary_data', {}).get('video_id', ''),
+                'enhanced_at': datetime.now().isoformat()
+            }
+            
+            return enhanced_summary
+            
+        except Exception as e:
+            logger.error(f"Error generating Gemini enhanced summary: {e}")
+            raise
+    
+    def _extract_enhanced_section(self, content: str, section_type: str) -> str:
+        """Extract specific sections from Gemini response."""
+        # Simple extraction - in practice, you might want more sophisticated parsing
+        if section_type == 'executive':
+            return content[:500] + "..." if len(content) > 500 else content
+        elif section_type == 'breakdown':
+            return content[500:1500] + "..." if len(content) > 1500 else content
+        elif section_type == 'objectives':
+            return content[1500:2000] + "..." if len(content) > 2000 else content
+        else:
+            return content
+    
+    def _save_enhanced_summary(self, enhanced_summary: Dict, video_id: str) -> str:
+        """Save enhanced summary to file."""
+        try:
+            filename = f"enhanced_summary_{video_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            filepath = os.path.join(config.SUMMARIES_DIR, filename)
+            
+            with open(filepath, 'w') as f:
+                json.dump(enhanced_summary, f, indent=2)
+            
+            return filepath
+            
+        except Exception as e:
+            logger.error(f"Error saving enhanced summary: {e}")
+            raise
+    
+    def _generate_enhanced_markdown_summary(self, enhanced_summary: Dict, video_id: str) -> str:
+        """Generate enhanced markdown summary."""
+        try:
+            filename = f"enhanced_summary_{video_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+            filepath = os.path.join(config.SUMMARIES_DIR, filename)
+            
+            markdown_content = self._create_enhanced_markdown_content(enhanced_summary)
+            
+            with open(filepath, 'w') as f:
+                f.write(markdown_content)
+            
+            return filepath
+            
+        except Exception as e:
+            logger.error(f"Error generating enhanced markdown: {e}")
+            raise
+    
+    def _create_enhanced_markdown_content(self, enhanced_summary: Dict) -> str:
+        """Create enhanced markdown content."""
+        content = f"""# Enhanced Video Summary (Gemini Enhanced)
+
+## 🚀 Executive Summary
+{enhanced_summary.get('executive_summary', 'No executive summary available.')}
+
+## 📚 Learning Objectives
+{enhanced_summary.get('learning_objectives', 'No learning objectives available.')}
+
+## 🔍 Detailed Breakdown
+{enhanced_summary.get('detailed_breakdown', 'No detailed breakdown available.')}
+
+## 🎯 Next Steps
+{enhanced_summary.get('next_steps', 'No next steps available.')}
+
+---
+
+*This summary was enhanced using Gemini API for improved quality and depth.*
+*Enhanced at: {enhanced_summary.get('enhanced_at', 'Unknown')}*
+"""
+        return content
+    
+    def _analyze_improvements(self, original: Dict, enhanced: Dict) -> Dict[str, Any]:
+        """Analyze improvements made by Gemini enhancement."""
+        try:
+            original_text = str(original.get('summary_data', {}).get('full_summary', ''))
+            enhanced_text = str(enhanced.get('enhanced_summary', ''))
+            
+            improvements = {
+                'word_count_increase': len(enhanced_text.split()) - len(original_text.split()),
+                'enhancement_ratio': len(enhanced_text) / len(original_text) if len(original_text) > 0 else 1.0,
+                'sections_enhanced': len(enhanced.keys()),
+                'quality_improvements': [
+                    'More detailed explanations',
+                    'Enhanced code examples',
+                    'Better learning objectives',
+                    'Comprehensive topic breakdown',
+                    'Actionable next steps'
+                ]
+            }
+            
+            return improvements
+            
+        except Exception as e:
+            logger.error(f"Error analyzing improvements: {e}")
+            return {'error': str(e)}
+    
     def _generate_executive_summary(self, video_metadata: Dict, content_analysis: Dict) -> str:
         """Generate executive summary of the video."""
         try:
@@ -107,15 +348,7 @@ class VideoSummarizer:
             Focus on what students will learn and the main concepts covered.
             """
             
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=200,
-                    temperature=0.3
-                )
-            )
-            
-            return response.text.strip()
+            return self.llm_manager.generate_response(prompt, "")
             
         except Exception as e:
             logger.error(f"Error generating executive summary: {e}")
@@ -201,15 +434,7 @@ class VideoSummarizer:
             Focus on the key concepts explained and any specific algorithms or data structures discussed.
             """
             
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=150,
-                    temperature=0.3
-                )
-            )
-            
-            return response.text.strip()
+            return self.llm_manager.generate_response(prompt, "")
             
         except Exception as e:
             logger.error(f"Error summarizing section: {e}")
@@ -279,15 +504,7 @@ class VideoSummarizer:
             Keep the explanation educational and suitable for DSA students.
             """
             
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=300,
-                    temperature=0.3
-                )
-            )
-            
-            return response.text.strip()
+            return self.llm_manager.generate_response(prompt, "")
             
         except Exception as e:
             logger.error(f"Error explaining code snippet: {e}")
@@ -401,7 +618,8 @@ class VideoSummarizer:
         code_examples: List[Dict],
         learning_objectives: List[str],
         next_steps: Dict[str, List[str]],
-        content_analysis: Dict
+        content_analysis: Dict,
+        key_frames: List[Dict[str, Any]]
     ) -> Dict[str, Any]:
         """Compile all summary components into a final document."""
         
@@ -428,6 +646,7 @@ class VideoSummarizer:
             'topic_timeline': timeline,
             'next_steps': next_steps,
             'full_summary': full_summary,
+            'key_frames': key_frames,
             
             'statistics': {
                 'total_topics': len(content_analysis.get('topics_mentioned', {})),
@@ -511,9 +730,29 @@ class VideoSummarizer:
             "",
             summary_data['executive_summary'],
             "",
-            "## Learning Objectives",
+            "## Key Frames",
             ""
         ]
+
+        # Embed key frames if available
+        key_frames = summary_data.get('key_frames', [])
+        if key_frames:
+            for frame in key_frames:
+                ts = frame.get('timestamp_formatted', '')
+                ftype = frame.get('type', 'frame')
+                path = frame.get('frame_path', '')
+                caption = frame.get('caption', '')
+                markdown_lines.append(f"- {ts} • {ftype}")
+                if path:
+                    markdown_lines.extend(["", f"![]({path})"])
+                if caption:
+                    markdown_lines.append(f"_{caption}_")
+                markdown_lines.append("")
+        else:
+            markdown_lines.append("No key frames selected.")
+            markdown_lines.append("")
+
+        markdown_lines.extend(["", "## Learning Objectives", ""])
         
         # Add learning objectives
         for objective in summary_data['learning_objectives']:
@@ -532,6 +771,19 @@ class VideoSummarizer:
             
             if section['topics_covered']:
                 markdown_lines.append(f"**Topics:** {', '.join(section['topics_covered'])}")
+                markdown_lines.append("")
+
+            # Embed section frames if available
+            for frame in section.get('frames', [])[:6]:
+                ts = frame.get('timestamp_formatted', '')
+                ftype = frame.get('type', 'frame')
+                path = frame.get('frame_path', '')
+                caption = frame.get('caption', '')
+                markdown_lines.append(f"- {ts} • {ftype}")
+                if path:
+                    markdown_lines.extend(["", f"![]({path})"])
+                if caption:
+                    markdown_lines.append(f"_{caption}_")
                 markdown_lines.append("")
         
         # Add code examples
@@ -589,6 +841,147 @@ class VideoSummarizer:
         ])
         
         return "\\n".join(markdown_lines)
+
+    def _select_key_frames(self, frames_analysis: Dict[str, Any], max_total: int = 6) -> List[Dict[str, Any]]:
+        """Select a small set of important frames to showcase in the summary."""
+        selected: List[Dict[str, Any]] = []
+
+        def take(items: List[Dict[str, Any]], how_many: int, frame_type: str) -> None:
+            for item in items[:how_many]:
+                caption_topics = item.get('topics_detected', [])
+                caption = ''
+                if caption_topics:
+                    caption = f"Topics: {', '.join(caption_topics)}"
+                selected.append({
+                    'type': frame_type,
+                    'timestamp': item.get('timestamp'),
+                    'timestamp_formatted': item.get('timestamp_formatted'),
+                    'frame_path': item.get('frame_path'),
+                    'caption': caption
+                })
+
+        code_frames = frames_analysis.get('code_frames', [])
+        diagram_frames = frames_analysis.get('diagram_frames', [])
+        text_frames = frames_analysis.get('text_frames', [])
+
+        # Prioritize code frames, then diagrams, then text frames
+        remaining = max_total
+        take(code_frames, min(3, remaining), 'code'); remaining = max_total - len(selected)
+        if remaining > 0:
+            take(diagram_frames, min(2, remaining), 'diagram'); remaining = max_total - len(selected)
+        if remaining > 0:
+            take(text_frames, min(remaining, 2), 'text')
+
+        # Sort by timestamp to present chronologically
+        selected.sort(key=lambda f: (f.get('timestamp') is None, f.get('timestamp', 0)))
+
+        return selected
+
+    def _persist_key_frames(self, video_id: str, key_frames: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Copy selected frame images to a persistent directory and update their paths.
+
+        Frames are initially saved under TEMP_DIR and would be removed during cleanup. We
+        copy them to SUMMARIES_DIR/frames/<video_id>/ and update 'frame_path'.
+        """
+        try:
+            if not key_frames:
+                return key_frames
+
+            target_dir = os.path.join(config.SUMMARIES_DIR, 'frames', video_id)
+            os.makedirs(target_dir, exist_ok=True)
+
+            updated: List[Dict[str, Any]] = []
+            for frame in key_frames:
+                src = frame.get('frame_path')
+                if not src or not os.path.exists(src):
+                    updated.append(frame)
+                    continue
+                filename = os.path.basename(src)
+                dst = os.path.join(target_dir, filename)
+                try:
+                    shutil.copy2(src, dst)
+                    frame_copy = dict(frame)
+                    frame_copy['original_path'] = src
+                    frame_copy['frame_path'] = dst
+                    updated.append(frame_copy)
+
+                except Exception:
+                    logger.warning(f"Failed to persist frame: {src}")
+                    updated.append(frame)
+
+            return updated
+        except Exception:
+            return key_frames
+
+    def _attach_section_frames(
+        self,
+        video_id: str,
+        sections: List[Dict[str, Any]],
+        frames_analysis: Dict[str, Any],
+        max_per_section: int = 4
+    ) -> List[Dict[str, Any]]:
+        """For each section, attach a few representative frames within its time range and persist them.
+
+        Prioritizes code frames, then diagrams, then text. Copies images to summaries dir so they persist.
+        """
+        try:
+            # Build a combined list with type info
+            def tag(frames: List[Dict[str, Any]], ftype: str) -> List[Dict[str, Any]]:
+                tagged = []
+                for fr in frames:
+                    fr_copy = dict(fr)
+                    fr_copy['type'] = ftype
+                    topics = fr_copy.get('topics_detected', [])
+                    fr_copy['caption'] = f"Topics: {', '.join(topics)}" if topics else ''
+                    tagged.append(fr_copy)
+                return tagged
+
+            code_frames = tag(frames_analysis.get('code_frames', []), 'code')
+            diagram_frames = tag(frames_analysis.get('diagram_frames', []), 'diagram')
+            text_frames = tag(frames_analysis.get('text_frames', []), 'text')
+            other_frames = tag(frames_analysis.get('other_frames', []), 'frame')
+
+            for section in sections:
+                start_t = section.get('start_time', 0)
+                end_t = section.get('end_time', 0)
+
+                def in_range(fr):
+                    ts = fr.get('timestamp')
+                    return ts is not None and start_t <= ts < end_t
+
+                selected: List[Dict[str, Any]] = []
+
+                # Helper to take from a list up to remaining slots
+                def take_from(pool: List[Dict[str, Any]], n: int):
+                    nonlocal selected
+                    for fr in pool:
+                        if in_range(fr):
+                            selected.append(fr)
+                            if len(selected) >= n:
+                                break
+
+                remaining = max_per_section
+                take_from(code_frames, remaining)
+                remaining = max_per_section - len(selected)
+                if remaining > 0:
+                    take_from(diagram_frames, remaining)
+                remaining = max_per_section - len(selected)
+                if remaining > 0:
+                    take_from(text_frames, remaining)
+                remaining = max_per_section - len(selected)
+                if remaining > 0:
+                    take_from(other_frames, remaining)
+
+                # Persist images and sort chronologically
+                if selected:
+                    persisted = self._persist_key_frames(video_id, selected)
+                    persisted.sort(key=lambda f: (f.get('timestamp') is None, f.get('timestamp', 0)))
+                    section['frames'] = persisted
+
+
+            return sections
+        except Exception:
+            return sections
     
     def load_summary(self, video_id: str) -> Optional[Dict[str, Any]]:
         """Load existing summary from file."""
@@ -604,3 +997,39 @@ class VideoSummarizer:
         except Exception as e:
             logger.error(f"Error loading summary: {e}")
             return None
+
+    def has_summary(self, video_id: str) -> bool:
+        """Check whether a summary exists for the given video_id."""
+        try:
+            summary_file = os.path.join(config.SUMMARIES_DIR, f"{video_id}_summary.json")
+            return os.path.exists(summary_file)
+        except Exception:
+            return False
+
+    def list_summaries(self) -> List[Dict[str, Any]]:
+        """List all stored summaries with basic metadata."""
+        try:
+            summaries: List[Dict[str, Any]] = []
+            if not os.path.exists(config.SUMMARIES_DIR):
+                return summaries
+            for name in os.listdir(config.SUMMARIES_DIR):
+                if name.endswith('_summary.json'):
+                    path = os.path.join(config.SUMMARIES_DIR, name)
+                    try:
+                        with open(path, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                            summaries.append({
+                                'video_id': data.get('video_id', os.path.splitext(name)[0].replace('_summary', '')),
+                                'title': data.get('title', 'Unknown'),
+                                'generated_at': data.get('generated_at', ''),
+                                'duration_formatted': data.get('duration_formatted', ''),
+                                'file': path
+                            })
+                    except Exception:
+                        continue
+            # Sort by generated_at desc if available
+            summaries.sort(key=lambda x: x.get('generated_at', ''), reverse=True)
+            return summaries
+        except Exception as e:
+            logger.error(f"Error listing summaries: {e}")
+            return []

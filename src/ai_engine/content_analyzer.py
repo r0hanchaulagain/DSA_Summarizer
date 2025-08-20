@@ -382,6 +382,7 @@ class ContentAnalyzer:
             code_frames = []
             diagram_frames = []
             text_frames = []
+            other_frames = []
             
             for frame in frames_data:
                 if frame.get('contains_code'):
@@ -413,14 +414,24 @@ class ContentAnalyzer:
                             'text_content': frame.get('text_content', ''),
                             'topics_detected': topics
                         })
+                
+                # Collect neutral frames as fallback for visuals
+                if not frame.get('contains_code') and not frame.get('contains_diagram') and not frame.get('has_text'):
+                    other_frames.append({
+                        'timestamp': frame['timestamp'],
+                        'timestamp_formatted': frame['timestamp_formatted'],
+                        'frame_path': frame['frame_path']
+                    })
             
             return {
                 'code_frames': code_frames,
                 'diagram_frames': diagram_frames,
                 'text_frames': text_frames,
+                'other_frames': other_frames,
                 'total_code_frames': len(code_frames),
                 'total_diagram_frames': len(diagram_frames),
-                'total_text_frames': len(text_frames)
+                'total_text_frames': len(text_frames),
+                'total_other_frames': len(other_frames)
             }
             
         except Exception as e:
